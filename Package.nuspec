@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Package</id>
+    <version>1.0.0</version>
+    <authors>Arwin</authors>
+    <owners>Arwin</owners>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/niwrA/ddd-command-manager</projectUrl>
+    <iconUrl></iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This (opiniated) domain driven design / microservices focussed command library makes it easy to match commands with one or more services. You can route all commands for a specific root to one or more processors, and add specific configurations for specific commands. Includes deseralization into command objects that can be executed. This is an alternative way of matching executable code with commands from message handlers, and matches the domain driven design philosophy perhaps a bit more closely. It also includes support for merging multiple commands to rebuild an object similar to event-sourcing.</description>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>commands micro-services ddd domain</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="10.3" />
+    </dependencies>
+  </metadata>
+</package>
