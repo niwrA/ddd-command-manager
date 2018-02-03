@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CommandsShared
+namespace niwrA.CommandManager
 {
     public class TypeNotFoundException : Exception
     {

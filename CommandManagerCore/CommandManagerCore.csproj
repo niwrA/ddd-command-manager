@@ -10,8 +10,11 @@
     <RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>commands micro-services ddd domain</PackageTags>
-    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <PackageReleaseNotes>- Fixed namespace issues
+- Split Dto to Command conversion from processing logic, so that there is now a CommandDtoToCommandConverter and a CommandService that can process. merge, retrieve and store the commands (using the ICommandStateRepository)
+- Cleaned up the tests as well</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>2.0.0</Version>
   </PropertyGroup>
 
   <Import Project="..\CommandsShared\CommandsShared.projitems" Label="Shared" />

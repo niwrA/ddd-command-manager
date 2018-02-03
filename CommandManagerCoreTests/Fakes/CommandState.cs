@@ -1,5 +1,5 @@
 ﻿using System;
-using CommandsShared;
+using niwrA.CommandManager;
 
 namespace CommandManagerCoreTests.Fakes
 {

@@ -1,10 +1,10 @@
-﻿using CommandsShared;
+﻿using niwrA.CommandManager;
 using Moq;
 using Xunit;
 
 namespace CommandManagerCoreTests.Commands
 {
-    [Trait("Entity", "Command")]
+    [Trait("Entity", "CommandConfig")]
     public class CommandConfigTests
     {
         const string _assembly = "CommandManagerCoreTests";
@@ -29,7 +29,7 @@ namespace CommandManagerCoreTests.Commands
             var command = commandConfig.GetCommand(json) as Fakes.RenameRootEntityCommand;
             Assert.Equal("new name", command.Name);
         }
-        //todo: check that CommandConfig overrides ProcessorConfig
+
         [Fact(DisplayName = "ThrowsTypeNotFoundException_WhenTypeNotFound")]
         public void ThrowsTypeNotFoundException_WhenTypeNotFound()
         {
