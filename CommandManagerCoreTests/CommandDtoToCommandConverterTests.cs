@@ -18,7 +18,7 @@ namespace CommandManagerCoreTests
         {
             var json = @"{'Name': 'new name'}";
             var projectsMoq = new Mock<Fakes.ITestService>();
-            var processorConfig = new ProcessorConfig { EntityRoot = "RootEntity", Assembly = _assembly, NameSpace = _namespace, Processor = projectsMoq.Object };
+            var processorConfig = new ProcessorConfig("RootEntity", projectsMoq.Object, _namespace, _assembly);
             var command = processorConfig.GetCommand("Rename", "RootEntity", json) as Fakes.RenameRootEntityCommand;
             Assert.Equal("new name", command.Name);
         }
@@ -88,7 +88,7 @@ namespace CommandManagerCoreTests
                 var sut = new CommandDtoToCommandConverter(repo.Object, dateTimeProvider);
                 var processorConfigs = new List<IProcessorConfig>
                 {
-                    new ProcessorConfig { EntityRoot = "RootEntity", NameSpace = _namespace, Assembly = _assembly, Processor = TestServiceMock.Object },
+                    new ProcessorConfig("RootEntity", TestServiceMock.Object, _namespace, _assembly)
                 };
 
                 sut.AddProcessorConfigs(processorConfigs);

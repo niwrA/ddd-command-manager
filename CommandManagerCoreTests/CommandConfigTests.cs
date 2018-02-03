@@ -15,7 +15,7 @@ namespace CommandManagerCoreTests.Commands
         {
             var json = @"{'Name': 'new name'}";
             var projectsMoq = new Mock<Fakes.ITestService>();
-            var processorConfig = new ProcessorConfig { EntityRoot = "RootEntity", Assembly = _assembly, NameSpace = _namespace, Processor = projectsMoq.Object };
+            var processorConfig = new ProcessorConfig("RootEntity", projectsMoq.Object, _namespace, _assembly);
             var command = processorConfig.GetCommand("Rename", "RootEntity", json) as Fakes.RenameRootEntityCommand;
             Assert.Equal("new name", command.Name);
         }
@@ -36,7 +36,7 @@ namespace CommandManagerCoreTests.Commands
             var json = @"{'Name': 'new name'}";
             var projectsMoq = new Mock<Fakes.TestService>();
             var commandConfig = new CommandConfig { Assembly = "SomethingNotExisting", NameSpace = "SomethingNotExisting", CommandName = "Rename", Entity = "RootEntity", Processor = projectsMoq.Object };
-            Assert.Throws<TypeNotFoundException>(()=> commandConfig.GetCommand(json));
+            Assert.Throws<TypeNotFoundException>(() => commandConfig.GetCommand(json));
         }
     }
 }

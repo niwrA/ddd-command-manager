@@ -12,7 +12,7 @@ namespace CommandManagerCoreTests
     {
         const string _assembly = "CommandManagerCoreTests";
         const string _namespace = "CommandManagerCoreTests.Fakes";
-   
+
         [Fact(DisplayName = "ProcessCommand_CanTargetMultipleProcessorsForOneCommand")]
         public void ProcessCommand_CanTargetMultipleProcessorsForOneCommand()
         {
@@ -36,8 +36,8 @@ namespace CommandManagerCoreTests
 
             var processorConfigs = new List<IProcessorConfig>
             {
-                new ProcessorConfig { EntityRoot = "RootEntity", NameSpace = _namespace, Assembly = _assembly, Processor = processor3.Object },
-                new ProcessorConfig { EntityRoot = "RootEntity", NameSpace = _namespace, Assembly = _assembly, Processor = processor4.Object }
+                new ProcessorConfig("RootEntity", processor3.Object, _namespace, _assembly),
+                new ProcessorConfig("RootEntity", processor4.Object, _namespace, _assembly)
             };
 
             sut.AddCommandConfigs(configs);
@@ -83,13 +83,7 @@ namespace CommandManagerCoreTests
 
             // setup configuration for all Contact commands to use the service above
             // for command processing
-            var processorConfig = new ProcessorConfig()
-            {
-                Assembly = _assembly,
-                NameSpace = _namespace,
-                EntityRoot = "RootEntity",
-                Processor = processor
-            };
+            var processorConfig = new ProcessorConfig("RootEntity", processor, _namespace, _assembly);
             sut.AddProcessorConfigs(new List<IProcessorConfig> { processorConfig });
 
             // create a new command to merge/apply

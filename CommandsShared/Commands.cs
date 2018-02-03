@@ -175,10 +175,10 @@ namespace niwrA.CommandManager
 
     public interface IProcessorConfig
     {
-        ICommandProcessor Processor { get; set; }
-        string EntityRoot { get; set; }
-        string NameSpace { get; set; }
-        string Assembly { get; set; }
+        ICommandProcessor Processor { get; }
+        string EntityRoot { get; }
+        string NameSpace { get; }
+        string Assembly { get; }
         ICommand GetCommand(string name, string entity, string parametersJson);
     }
 
@@ -193,10 +193,17 @@ namespace niwrA.CommandManager
 
     public class ProcessorConfig : IProcessorConfig
     {
-        public ICommandProcessor Processor { get; set; }
-        public string EntityRoot { get; set; }
-        public string NameSpace { get; set; }
-        public string Assembly { get; set; }
+        public ProcessorConfig(string entityRoot, ICommandProcessor processor, string nameSpace, string assembly)
+        {
+            EntityRoot = entityRoot;
+            Processor = processor;
+            NameSpace = nameSpace;
+            Assembly = assembly;
+        }
+        public ICommandProcessor Processor { get; }
+        public string EntityRoot { get; }
+        public string NameSpace { get; }
+        public string Assembly { get; }
         public ICommand GetCommand(string name, string entity, string parametersJson)
         {
             var commandConfig = new CommandConfig()
