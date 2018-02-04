@@ -5,86 +5,107 @@ using System.Text;
 
 namespace CommandManagerCoreTests.Fakes
 {
-    public interface IRootEntityState
+  public interface IRootEntityState
+  {
+    Guid Guid { get; }
+    string Name { get; set; }
+    string Email { get; set; }
+  }
+
+  public interface IRootEntity
+  {
+    string Name { get; }
+    string Email { get; }
+
+    void Rename(string name);
+    void ChangeEmail(string email);
+  }
+
+  public class RootEntity : IRootEntity
+  {
+    private IRootEntityState _state;
+
+    public RootEntity(IRootEntityState state)
     {
-        Guid Guid { get; }
-        string Name { get; set; }
+      _state = state;
+    }
+    public string Name { get { return _state.Name; } }
+
+    public string Email { get { return _state.Email; } }
+
+    public void ChangeEmail(string email)
+    {
+      _state.Email = email;
     }
 
-    public interface IRootEntity
+    public void Rename(string name)
     {
-        string Name { get; }
-        void Rename(string name);
+      _state.Name = name;
     }
-
-    public class RootEntity : IRootEntity
+  }
+  public class CreateRootEntityCommand : CommandBase, ICommand
+  {
+    public string Name { get; set; }
+    public void Execute()
     {
-        private IRootEntityState _state;
-
-        public RootEntity(IRootEntityState state)
-        {
-            _state = state;
-        }
-        public string Name { get { return _state.Name; } }
-        public void Rename(string name)
-        {
-            _state.Name = name;
-        }
+      ((ITestService)CommandProcessor).CreateRootEntity(EntityGuid, Name);
     }
-    public class CreateRootEntityCommand : CommandBase, ICommand
+  }
+  public class RenameRootEntityCommand : CommandBase, ICommand
+  {
+    public string Name { get; set; }
+    public void Execute()
     {
-        public string Name { get; set; }
-        public void Execute()
-        {
-            ((ITestService)CommandProcessor).CreateRootEntity(EntityGuid, Name);
-        }
+      var testObject = ((ITestService)CommandProcessor).GetRootEntity(EntityGuid);
+      testObject.Rename(Name);
     }
-    public class RenameRootEntityCommand : CommandBase, ICommand
+  }
+  public class ChangeEmailForRootEntityCommand : CommandBase, ICommand
+  {
+    public string Email { get; set; }
+    public void Execute()
     {
-        public string Name { get; set; }
-        public void Execute()
-        {
-            var testObject = ((ITestService)CommandProcessor).GetRootEntity(EntityGuid);
-            testObject.Rename(Name);
-        }
+      var testObject = ((ITestService)CommandProcessor).GetRootEntity(EntityGuid);
+      testObject.ChangeEmail(Email);
     }
-    public class RenameChildEntityCommand : CommandBase, ICommand
+  }
+  public class RenameChildEntityCommand : CommandBase, ICommand
+  {
+    public string OriginalName { get; set; }
+    public string Name { get; set; }
+    public void Execute()
     {
-        public string OriginalName { get; set; }
-        public string Name { get; set; }
-        public void Execute()
-        {
-            var testObject = ((ITestService)CommandProcessor).GetRootEntity(EntityGuid);
-            // todo: get child
-        }
+      var testObject = ((ITestService)CommandProcessor).GetRootEntity(EntityGuid);
+      // todo: get child
     }
-    public interface ITestServiceRepository : IEntityRepository
+  }
+  public interface ITestServiceRepository : IEntityRepository
+  {
+    IRootEntityState CreateRootEntityState(Guid guid, string name);
+    IRootEntityState GetRootEntityState(Guid guid);
+  }
+  public interface ITestService : ICommandProcessor
+  {
+    IRootEntity GetRootEntity(Guid guid);
+    IRootEntity CreateRootEntity(Guid guid, string Name);
+  }
+  public class TestService : ITestService
+  {
+    private ITestServiceRepository _repo;
+    public TestService() { }
+    public TestService(ITestServiceRepository repo)
     {
-        IRootEntityState CreateRootEntityState(Guid guid, string name);
-        IRootEntityState GetRootEntityState(Guid guid);
+      _repo = repo;
     }
-    public interface ITestService : ICommandProcessor
+    public IRootEntity GetRootEntity(Guid guid)
     {
-        IRootEntity GetRootEntity(Guid guid);
-        IRootEntity CreateRootEntity(Guid guid, string Name);
+      var state = _repo.GetRootEntityState(guid);
+      return new RootEntity(state);
     }
-    public class TestService : ITestService
+    public IRootEntity CreateRootEntity(Guid guid, string name)
     {
-        private ITestServiceRepository _repo;
-        public TestService() { }
-        public TestService(ITestServiceRepository repo)
-        {
-            _repo = repo;
-        }
-        public IRootEntity GetRootEntity(Guid guid)
-        {
-            var state = _repo.GetRootEntityState(guid);
-            return new RootEntity(state);
-        }
-        public IRootEntity CreateRootEntity(Guid guid, string name)
-        {
-            var state = _repo.CreateRootEntityState(guid, name);
-            return new RootEntity(state);
-        }
+      var state = _repo.CreateRootEntityState(guid, name);
+      return new RootEntity(state);
     }
+  }
 }

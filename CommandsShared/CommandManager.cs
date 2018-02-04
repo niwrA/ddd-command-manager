@@ -27,7 +27,7 @@ namespace niwrA.CommandManager
         public void MergeCommands(IEnumerable<CommandDto> commands)
         {
             var typedCommands = _converter.ConvertCommands(commands);
-            _service.MergeCommands(typedCommands);
+            _service.MergeCommands(typedCommands, _converter);
         }
         public void AddCommandConfigs(IEnumerable<ICommandConfig> configs)
         {
