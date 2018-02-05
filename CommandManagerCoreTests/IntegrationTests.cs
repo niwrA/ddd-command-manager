@@ -23,7 +23,7 @@ namespace CommandManagerCoreTests
       var processor4 = new Mock<Fakes.ITestService>();
 
       var repo = new Mock<ICommandStateRepository>();
-      repo.Setup(s => s.CreateCommandState()).Returns(new Fakes.CommandState());
+      repo.Setup(s => s.CreateCommandState(It.IsAny<Guid>())).Returns(new Fakes.CommandState());
 
       var sut = new CommandDtoToCommandConverter(repo.Object, dateTimeProvider);
       var commandDto = new CommandDtoToCommandConverterTests.CommandDtoBuilder().Build();
@@ -77,7 +77,7 @@ namespace CommandManagerCoreTests
 
       // mock that these are returned by the repository
       var repo = new Mock<ICommandStateRepository>();
-      repo.Setup(s => s.CreateCommandState()).Returns(new Fakes.CommandState());
+      repo.Setup(s => s.CreateCommandState(It.IsAny<Guid>())).Returns(new Fakes.CommandState());
       repo.Setup(s => s.GetCommandStates(entityGuid)).Returns(existingCommands);
 
       // create a real service, with an eventsourcing version of the state repository,

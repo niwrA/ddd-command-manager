@@ -12,10 +12,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)CommandDtoToCommandConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CommandManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CommandService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommandNotConfiguredException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\CommandNotConfiguredException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\DefaultDateTimeProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ICommandDtoToCommandConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ICommandManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TypeNotFoundException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\TypeNotFoundException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Exceptions\" />
   </ItemGroup>
 </Project>

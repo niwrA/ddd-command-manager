@@ -1,4 +1,5 @@
-﻿using System;
+﻿using niwrA.CommandManager.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -72,7 +73,7 @@ namespace niwrA.CommandManager
 
         private void ProcessProcessorConfigs(CommandDto command, List<ICommand> typedCommands, string commandName, string parametersJson)
         {
-            var processorConfigs = GetProcessorConfigs(command.Entity);
+            var processorConfigs = GetProcessorConfigs(command.EntityRoot);
             foreach (var config in processorConfigs)
             {
                 var typedCommand = config.GetCommand(commandName, command.Entity, parametersJson);
@@ -103,7 +104,7 @@ namespace niwrA.CommandManager
         private void CopyCommandDtoIntoCommand(CommandDto command, ICommandProcessor processor, ICommand typedCommand)
         {
             typedCommand.CreatedOn = command.CreatedOn;
-            typedCommand.ReceivedOn = _dateTimeProvider.GetSessionUtcDateTime();
+            typedCommand.ReceivedOn = _dateTimeProvider.GetSessionDateTime();
             typedCommand.Entity = command.Entity;
             typedCommand.EntityGuid = command.EntityGuid;
             typedCommand.EntityRoot = command.EntityRoot;

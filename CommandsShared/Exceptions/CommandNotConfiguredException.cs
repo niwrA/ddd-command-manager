@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace niwrA.CommandManager
+namespace niwrA.CommandManager.Exceptions
 {
     internal class CommandNotConfiguredException : Exception
     {

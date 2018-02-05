@@ -83,7 +83,7 @@ namespace CommandManagerCoreTests
                 var dateTimeProvider = new Mock<IDateTimeProvider>().Object;
                 TestServiceMock = new Mock<Fakes.ITestService>();
                 var repo = new Mock<ICommandStateRepository>();
-                repo.Setup(s => s.CreateCommandState()).Returns(new Fakes.CommandState());
+                repo.Setup(s => s.CreateCommandState(It.IsAny<Guid>())).Returns(new Fakes.CommandState());
 
                 var sut = new CommandDtoToCommandConverter(repo.Object, dateTimeProvider);
                 var processorConfigs = new List<IProcessorConfig>

@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-
+using niwrA.CommandManager.Exceptions;
 namespace niwrA.CommandManager
 {
   // define the interface for holding a command's state for instance for storage in a repository
@@ -55,7 +55,7 @@ namespace niwrA.CommandManager
   public interface ICommandStateRepository
   {
     void PersistChanges();
-    ICommandState CreateCommandState();
+    ICommandState CreateCommandState(Guid guid);
     IEnumerable<ICommandState> GetCommandStates();
     IEnumerable<ICommandState> GetCommandStates(Guid entityGuid);
     IEnumerable<ICommandState> GetUnprocessedCommandStates();
@@ -118,7 +118,7 @@ namespace niwrA.CommandManager
     {
       if (_state == null && _repository != null)
       {
-        this._state = _repository.CreateCommandState();
+        this._state = _repository.CreateCommandState(Guid.NewGuid());
       }
       if (_state != null)
       {
@@ -206,7 +206,7 @@ namespace niwrA.CommandManager
     public string Assembly { get; }
     public ICommand GetCommand(string name, string entity, string parametersJson)
     {
-      var commandConfig = new CommandConfig(name, entity, this.Processor, this.NameSpace,this.Assembly);
+      var commandConfig = new CommandConfig(name, entity, this.Processor, this.NameSpace, this.Assembly);
       return commandConfig.GetCommand(parametersJson);
     }
   }
@@ -257,14 +257,15 @@ namespace niwrA.CommandManager
   public class CommandDto
   {
     private ICommandState _state;
+    private string _entityRoot = "";
     public CommandDto()
     {
     }
     public CommandDto(ICommandState state)
     {
       this.Guid = state.Guid;
-      this.EntityGuid = state.EntityGuid;
       this.Entity = state.Entity;
+      this.EntityGuid = state.EntityGuid;
       this.EntityRoot = state.EntityRoot;
       this.EntityRootGuid = state.EntityRootGuid;
       this.ExecutedOn = state.ExecutedOn;
@@ -278,7 +279,14 @@ namespace niwrA.CommandManager
     public Guid Guid { get; set; }
     public Guid EntityGuid { get; set; }
     public string Entity { get; set; }
-    public string EntityRoot { get; }
+    public string EntityRoot
+    {
+      get
+      {
+        if (string.IsNullOrWhiteSpace(_entityRoot)) { return Entity; } else { return _entityRoot; }
+      }
+      set { _entityRoot = value; }
+    }
     public string Command { get; set; }
     public string UserName { get; set; }
     public string ParametersJson { get; set; }
@@ -293,7 +301,7 @@ namespace niwrA.CommandManager
 
   public interface IDateTimeProvider
   {
-    DateTime GetSessionUtcDateTime();
+    DateTime GetSessionDateTime();
     DateTime GetServerDateTime();
   }
 }

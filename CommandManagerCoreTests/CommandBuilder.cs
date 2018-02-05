@@ -11,7 +11,7 @@ namespace CommandManagerCoreTests.Commands
             var commandRepoMock = new Mock<ICommandStateRepository>();
             var commandState = new Fakes.CommandState();
 
-            commandRepoMock.Setup(t => t.CreateCommandState()).Returns(commandState);
+            commandRepoMock.Setup(t => t.CreateCommandState(Guid.NewGuid())).Returns(commandState);
 
             T cmd = new T()
             {

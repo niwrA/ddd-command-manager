@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommandsShared", "CommandsShared\CommandsShared.shproj", "{E836653D-F62D-4262-89CD-622BF092F8E3}"
 EndProject
@@ -13,8 +13,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandManagerNetStandard",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandManagerUniversalWindows", "CommandManagerUniversalWindows\CommandManagerUniversalWindows.csproj", "{5F1C482F-C6DD-4D68-96EF-1F346AA90611}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{61EC596D-3BFA-462F-A298-6F97CCE393AC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{172563A7-7C71-4899-9222-92EDE2C12D32}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommandRepositoryInMemoryShared", "CommandRepositoryInMemoryShared\CommandRepositoryInMemoryShared.shproj", "{5D0E564D-8D2F-439C-B915-E1BE6104FE22}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		CommandRepositoryInMemoryShared\CommandRepositoryInMemoryShared.projitems*{5d0e564d-8d2f-439c-b915-e1be6104fe22}*SharedItemsImports = 13
+		CommandRepositoryInMemoryShared\CommandRepositoryInMemoryShared.projitems*{5f1c482f-c6dd-4d68-96ef-1f346aa90611}*SharedItemsImports = 4
 		CommandsShared\CommandsShared.projitems*{5f1c482f-c6dd-4d68-96ef-1f346aa90611}*SharedItemsImports = 4
 		CommandsShared\CommandsShared.projitems*{e836653d-f62d-4262-89cd-622bf092f8e3}*SharedItemsImports = 13
 	EndGlobalSection
@@ -96,6 +104,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E836653D-F62D-4262-89CD-622BF092F8E3} = {172563A7-7C71-4899-9222-92EDE2C12D32}
+		{6FCFECA4-8E46-453E-A582-0B7CBF145445} = {61EC596D-3BFA-462F-A298-6F97CCE393AC}
+		{208FD5D4-7300-4F3A-AE4C-697E8B163FE1} = {61EC596D-3BFA-462F-A298-6F97CCE393AC}
+		{5F1C482F-C6DD-4D68-96EF-1F346AA90611} = {61EC596D-3BFA-462F-A298-6F97CCE393AC}
+		{5D0E564D-8D2F-439C-B915-E1BE6104FE22} = {172563A7-7C71-4899-9222-92EDE2C12D32}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1165C405-2F11-4F3D-9F4B-16499319CBB0}

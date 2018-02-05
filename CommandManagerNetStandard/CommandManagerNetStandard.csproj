@@ -5,19 +5,20 @@
     <Description>This (opiniated) domain driven design / microservices focussed command library makes it easy to match commands with one or more services. You can route all commands for a specific root to one or more processors, and add specific configurations for specific commands. Includes deseralization into command objects that can be executed. This is an alternative way of matching executable code with commands from message handlers, and matches the domain driven design philosophy perhaps a bit more closely. It also includes support for merging multiple commands to rebuild an object similar to event-sourcing.</Description>
     <Authors>Arwin van Arum</Authors>
     <Company>niwrA</Company>
-    <PackageReleaseNotes>- Fixed namespace issues
-- Split Dto to Command conversion from processing logic, so that there is now a CommandDtoToCommandConverter and a CommandService that can process. merge, retrieve and store the commands (using the ICommandStateRepository)
-- Cleaned up the tests as well</PackageReleaseNotes>
+    <PackageReleaseNotes>- added a default Command repository (in memory using a concurrent dictionary)
+- added a default DateTimeProvider (just returns UtcNow for both times, with a cached version for session)</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/niwrA/ddd-command-manager</PackageProjectUrl>
     <RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>commands micro-services ddd domain</PackageTags>
-    <Version>2.0.0</Version>
+    <Version>2.0.1</Version>
   </PropertyGroup>
 
   <Import Project="..\CommandsShared\CommandsShared.projitems" Label="Shared" />
+
+  <Import Project="..\CommandRepositoryInMemoryShared\CommandRepositoryInMemoryShared.projitems" Label="Shared" />
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
