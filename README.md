@@ -1,7 +1,12 @@
 [![Build Status](https://travis-ci.org/niwrA/ddd-command-manager.svg?branch=master)](https://travis-ci.org/niwrA/ddd-command-manager)
 
+CommandManagerNetStandard
 [![NuGet](https://img.shields.io/nuget/v/CommandManagerNetStandard.svg)](https://www.nuget.org/packages/CommandManagerNetStandard/)
 [![NuGet](https://img.shields.io/nuget/dt/CommandManagerNetStandard.svg)](https://www.nuget.org/packages/CommandManagerNetStandard/)
+
+CommandManagerCore
+[![NuGet](https://img.shields.io/nuget/v/CommandManagerNetStandard.svg)](https://www.nuget.org/packages/CommandManagerCore/)
+[![NuGet](https://img.shields.io/nuget/dt/CommandManagerNetStandard.svg)](https://www.nuget.org/packages/CommandManagerCore/)
 
 # ddd-command-manager
 Opinionated library that facilitates converting command messages to commands that can be validated and executed by one or more services. It has been designed in such a way that some of the benefits of Event Sourcing can be harnassed even for small apps or apps that do not necessarily have extreme throughput requirements. Instead the focus is on designing apps that are easy to maintain and test, and have a linear complexity so that cost of development remains highly predictable, that can be used on any device and at any scale starting from embedded devices.
