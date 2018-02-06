@@ -110,3 +110,41 @@ However, the default repository implementation only keeps the commands in memory
 
 ### DateTime provider
 In addition, the logic for setting the correct timestamps on the commands as they are processed is also injected. The contract for this is defined in IDateTimeProvider, which you can also provide your own. The default implementation simply assumes you will create a new CommandManager for each session (as in a typical WebApi Controller setup) and return the same session datetime for the duration. This value is used for setting the ReceivedOn datetime on a command. The ServerDateTime simply returns UtcNow and is used to set the ExecutedOn datetime.
+
+## Testing
+Testing a command is pretty easy - basically you want to know little more than that the command calls the service with the right arguments. If you setup a builder for your command, you can get really clean tests, like this:
+
+    [Fact(DisplayName = "CreateContactCommand")]
+    public void CreateCommand()
+    {
+        var contactsMock = new Mock<IContactService>();
+        var sut = new CommandBuilder<CreateContactCommand>().Build(contactsMock.Object) as CreateContactCommand;
+
+        sut.Name = "New Contact";
+        sut.Execute();
+
+        contactsMock.Verify(s => s.CreateContact(sut.EntityGuid, sut.Name), Times.Once);
+    }
+
+Here is the code for the builder, that you can reuse for any command:
+
+    public class CommandBuilder<T> where T : ICommand, new()
+    {
+        public T Build(ICommandProcessor processor)
+        {
+          var commandRepoMock = new Mock<ICommandStateRepository>();
+          var dateTimeProviderMock = new Mock<IDateTimeProvider>();
+          var commandService = new CommandService(commandRepoMock.Object, dateTimeProviderMock.Object);
+
+          dateTimeProviderMock.Setup(s => s.GetServerDateTime()).Returns(new DateTime(2017, 1, 1));
+          CommandState commandState = new CommandState { Guid = Guid.NewGuid() };
+          commandRepoMock.Setup(s => s.CreateCommandState(It.IsAny<Guid>())).Returns(commandState);
+
+          var cmd = commandService.CreateCommand<T>();
+
+          cmd.EntityGuid = Guid.NewGuid();
+          cmd.CommandProcessor = processor;
+
+          return (T)cmd;
+        }
+    }
