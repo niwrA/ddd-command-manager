@@ -10,9 +10,11 @@
     <RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>commands micro-services ddd domain</PackageTags>
-    <PackageReleaseNotes>- added PersistChanges on CommandManager</PackageReleaseNotes>
+    <PackageReleaseNotes>- added CommandManager.PersistChanges convenience method (calls CommandService.PersistChanges)
+- added CommandManager.ProcessImportedCommands (returns how many commands were processed)
+- fix issue with EntityRootGuid remaining empty when only EntityGuid was provided</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.2</Version>
+    <Version>2.0.5</Version>
   </PropertyGroup>
 
   <Import Project="..\CommandsShared\CommandsShared.projitems" Label="Shared" />
