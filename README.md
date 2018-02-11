@@ -8,6 +8,10 @@ CommandManagerCore
 [![NuGet](https://img.shields.io/nuget/v/CommandManagerCore.svg)](https://www.nuget.org/packages/CommandManagerCore/)
 [![NuGet](https://img.shields.io/nuget/dt/CommandManagerCore.svg)](https://www.nuget.org/packages/CommandManagerCore/)
 
+CommandManagerNet
+[![NuGet](https://img.shields.io/nuget/v/CommandManagerNet.svg)](https://www.nuget.org/packages/CommandManagerNet/)
+[![NuGet](https://img.shields.io/nuget/dt/CommandManagerNet.svg)](https://www.nuget.org/packages/CommandManagerNet/)
+
 # ddd-command-manager
 Opinionated library that facilitates converting command messages to commands that can be validated and executed by one or more services. It has been designed in such a way that some of the benefits of Event Sourcing can be harnassed even for small apps or apps that do not necessarily have extreme throughput requirements. Instead the focus is on designing apps that are easy to maintain and test, and have a linear complexity so that cost of development remains highly predictable, that can be used on any device and at any scale starting from embedded devices.
 
