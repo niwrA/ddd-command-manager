@@ -258,6 +258,8 @@ namespace niwrA.CommandManager
   {
     private ICommandState _state;
     private string _entityRoot = "";
+    private Guid _entityRootGuid;
+
     public CommandDto()
     {
     }
@@ -279,6 +281,8 @@ namespace niwrA.CommandManager
     public Guid Guid { get; set; }
     public Guid EntityGuid { get; set; }
     public string Entity { get; set; }
+    // default to Entity values if only Entity is provided,
+    // for backward compatibility and ease of use
     public string EntityRoot
     {
       get
@@ -287,11 +291,18 @@ namespace niwrA.CommandManager
       }
       set { _entityRoot = value; }
     }
+    public Guid EntityRootGuid
+    {
+      get
+      {
+        if (Guid.Empty == _entityRootGuid) { return EntityGuid; } else { return _entityRootGuid; }
+      }
+      set { _entityRootGuid = value; }
+    }
     public string Command { get; set; }
     public string UserName { get; set; }
     public string ParametersJson { get; set; }
     public DateTime CreatedOn { get; set; }
-    public Guid EntityRootGuid { get; }
     public DateTime? ExecutedOn { get; set; }
     public DateTime? ReceivedOn { get; set; }
 

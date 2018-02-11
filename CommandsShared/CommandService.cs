@@ -53,7 +53,6 @@ namespace niwrA.CommandManager
       command.Execute();
       command.ExecutedOn = _dateTimeProvider.GetServerDateTime();
     }
-
     public ICommand CreateCommand<T>() where T : ICommand, new()
     {
       var command = new T()

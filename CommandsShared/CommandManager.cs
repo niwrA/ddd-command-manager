@@ -32,6 +32,12 @@ namespace niwrA.CommandManager
       var typedCommands = _converter.ConvertCommands(commands);
       _service.ProcessCommands(typedCommands);
     }
+    public int ProcessImportedCommands()
+    {
+      var importedCommands = _converter.GetUnprocessedCommands();
+      ProcessCommands(importedCommands);
+      return ((ICollection<CommandDto>)importedCommands).Count;
+    }
     public void MergeCommands(IEnumerable<CommandDto> commands)
     {
       var typedCommands = _converter.ConvertCommands(commands);
@@ -44,6 +50,10 @@ namespace niwrA.CommandManager
     public void AddProcessorConfigs(IEnumerable<IProcessorConfig> configs)
     {
       _converter.AddProcessorConfigs(configs);
+    }
+    public void PersistChanges()
+    {
+      _service.PersistChanges();
     }
   }
 }

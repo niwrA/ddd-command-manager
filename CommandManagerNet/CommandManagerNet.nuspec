@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>CommandManagerNet</id>
+    <version>2.0.1</version>
+    <title>CommandManagerNet</title>
+    <authors>Arwin van Arum</authors>
+    <owners>Arwin van Arum</owners>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/niwrA/ddd-command-manager</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+	<summary>Library that takes CommandDtos and deserializes and executes them against one or more configured command processors</summary>
+    <description>This (opiniated) domain driven design / microservices focussed command library makes it easy to match commands with one or more services. You can route all commands for a specific root to one or more processors, and add specific configurations for specific commands. Includes deseralization into command objects that can be executed. This is an alternative way of matching executable code with commands from message handlers, and matches the domain driven design philosophy perhaps a bit more closely. It also includes support for merging multiple commands to rebuild an object similar to event-sourcing.</description>
+    <releaseNotes>First .NET Framework 4.52+ version</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>commands micro-services ddd domain</tags>
+  </metadata>
+</package>
