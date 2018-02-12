@@ -43,7 +43,7 @@ namespace niwrA.CommandManager
             return configs;
         }
 
-        public IEnumerable<ICommand> ConvertCommands(IEnumerable<CommandDto> commands)
+        public IEnumerable<ICommand> ConvertCommands(IEnumerable<ICommandDto> commands)
         {
             var processed = new List<ICommand>();
             foreach (var command in commands)
@@ -52,7 +52,7 @@ namespace niwrA.CommandManager
             }
             return processed;
         }
-        public IEnumerable<ICommand> ConvertCommand(CommandDto command)
+        public IEnumerable<ICommand> ConvertCommand(ICommandDto command)
         {
             //      ICommand typedCommand = null;
             var typedCommands = new List<ICommand>();
@@ -71,7 +71,7 @@ namespace niwrA.CommandManager
             throw new CommandNotConfiguredException($"The command named '{command.Command}' for entity '{command.Entity}' does not have a matching configuration.");
         }
 
-        private void ProcessProcessorConfigs(CommandDto command, List<ICommand> typedCommands, string commandName, string parametersJson)
+        private void ProcessProcessorConfigs(ICommandDto command, List<ICommand> typedCommands, string commandName, string parametersJson)
         {
             var processorConfigs = GetProcessorConfigs(command.EntityRoot);
             foreach (var config in processorConfigs)
@@ -83,7 +83,7 @@ namespace niwrA.CommandManager
             }
         }
 
-        private void ProcessCommandConfigs(CommandDto command, List<ICommand> typedCommands, string commandName, string parametersJson)
+        private void ProcessCommandConfigs(ICommandDto command, List<ICommand> typedCommands, string commandName, string parametersJson)
         {
             var commandConfigs = GetCommandConfigs(commandName + command.Entity + "Command");
             foreach (var config in commandConfigs)
@@ -95,13 +95,13 @@ namespace niwrA.CommandManager
             }
         }
 
-        private void SetCommandProperties(CommandDto command, ICommandProcessor processor, ICommand typedCommand)
+        private void SetCommandProperties(ICommandDto command, ICommandProcessor processor, ICommand typedCommand)
         {
             typedCommand.CommandRepository = _repo;
             CopyCommandDtoIntoCommand(command, processor, typedCommand);
         }
 
-        private void CopyCommandDtoIntoCommand(CommandDto command, ICommandProcessor processor, ICommand typedCommand)
+        private void CopyCommandDtoIntoCommand(ICommandDto command, ICommandProcessor processor, ICommand typedCommand)
         {
             typedCommand.CreatedOn = command.CreatedOn;
             typedCommand.ReceivedOn = _dateTimeProvider.GetSessionDateTime();
@@ -117,10 +117,10 @@ namespace niwrA.CommandManager
             typedCommand.CommandProcessor = processor;
         }
 
-        public IEnumerable<CommandDto> GetUnprocessedCommands()
+        public IEnumerable<ICommandDto> GetUnprocessedCommands()
         {
             var states = _repo.GetUnprocessedCommandStates();
-            var dtos = new List<CommandDto>();
+            var dtos = new List<ICommandDto>();
             foreach (var state in states)
             {
                 dtos.Add(new CommandDto(state));

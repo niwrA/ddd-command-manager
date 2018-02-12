@@ -6,11 +6,11 @@ namespace niwrA.CommandManager
     {
         void AddCommandConfigs(IEnumerable<ICommandConfig> configs);
         void AddProcessorConfigs(IEnumerable<IProcessorConfig> configs);
-        IEnumerable<ICommand> ConvertCommand(CommandDto command);
-        IEnumerable<ICommand> ConvertCommands(IEnumerable<CommandDto> commands);
+        IEnumerable<ICommand> ConvertCommand(ICommandDto command);
+        IEnumerable<ICommand> ConvertCommands(IEnumerable<ICommandDto> commands);
         IEnumerable<ICommandConfig> GetCommandConfigs(string key);
         IEnumerable<IProcessorConfig> GetProcessorConfigs(string key);
-        IEnumerable<CommandDto> GetUnprocessedCommands();
+        IEnumerable<ICommandDto> GetUnprocessedCommands();
         //void MergeCommands(IEnumerable<CommandDto> commands);
     }
 }

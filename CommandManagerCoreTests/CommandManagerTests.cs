@@ -39,9 +39,9 @@ namespace CommandManagerCoreTests
     {
       var serviceMock = new Mock<ICommandService>();
       var converterMock = new Mock<ICommandDtoToCommandConverter>();
-      var commandDtos = new List<CommandDto> { new CommandDtoBuilder().Build() };
+      var commandDtos = new List<ICommandDto> { new CommandDtoBuilder().Build() };
 
-      Assert.Null(commandDtos.First().ExecutedOn);
+      Assert.Null(((CommandDto)commandDtos.First()).ExecutedOn);
 
       converterMock.Setup(s => s.GetUnprocessedCommands()).Returns(commandDtos);
 

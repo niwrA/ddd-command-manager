@@ -27,7 +27,7 @@ namespace niwrA.CommandManager
       _converter = converter;
       _service = service;
     }
-    public void ProcessCommands(IEnumerable<CommandDto> commands)
+    public void ProcessCommands(IEnumerable<ICommandDto> commands)
     {
       var typedCommands = _converter.ConvertCommands(commands);
       _service.ProcessCommands(typedCommands);
@@ -36,9 +36,9 @@ namespace niwrA.CommandManager
     {
       var importedCommands = _converter.GetUnprocessedCommands();
       ProcessCommands(importedCommands);
-      return ((ICollection<CommandDto>)importedCommands).Count;
+      return ((ICollection<ICommandDto>)importedCommands).Count;
     }
-    public void MergeCommands(IEnumerable<CommandDto> commands)
+    public void MergeCommands(IEnumerable<ICommandDto> commands)
     {
       var typedCommands = _converter.ConvertCommands(commands);
       _service.MergeCommands(typedCommands, _converter);

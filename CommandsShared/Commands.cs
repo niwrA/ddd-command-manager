@@ -160,7 +160,10 @@ namespace niwrA.CommandManager
 
   }
   // the domain class for Commands
-  public interface ICommandProcessor { }
+  public interface ICommandProcessor
+  {
+    void PersistChanges();
+  }
 
   public interface ICommandConfig
   {
@@ -253,8 +256,25 @@ namespace niwrA.CommandManager
       return command;
     }
   }
+  public interface IParametersDto
+  {
 
-  public class CommandDto
+  }
+  public interface ICommandDto
+  {
+    Guid Guid { get; set; }
+    string Command { get; set; }
+    string CommandVersion { get; set; }
+    Guid EntityGuid { get; set; }
+    string Entity { get; set; }
+    Guid EntityRootGuid { get; set; }
+    string EntityRoot { get; set; }
+    string UserName { get; set; }
+    DateTime CreatedOn { get; set; }
+    string ParametersJson { get; set; }
+    IParametersDto ParametersDto { get; set; }
+  }
+  public class CommandDto : ICommandDto
   {
     private ICommandState _state;
     private string _entityRoot = "";
@@ -300,13 +320,13 @@ namespace niwrA.CommandManager
       set { _entityRootGuid = value; }
     }
     public string Command { get; set; }
+    public string CommandVersion { get; set; }
     public string UserName { get; set; }
     public string ParametersJson { get; set; }
     public DateTime CreatedOn { get; set; }
     public DateTime? ExecutedOn { get; set; }
     public DateTime? ReceivedOn { get; set; }
-
-    //public string UserName { get; set; }
+    public IParametersDto ParametersDto { get; set; }
   }
 
 

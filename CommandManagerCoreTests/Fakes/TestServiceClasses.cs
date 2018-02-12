@@ -107,5 +107,9 @@ namespace CommandManagerCoreTests.Fakes
       var state = _repo.CreateRootEntityState(guid, name);
       return new RootEntity(state);
     }
+    public void PersistChanges()
+    {
+      _repo.PersistChanges();
+    }
   }
 }

@@ -49,6 +49,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CommandManagerNet.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="..\CommandRepositoryInMemoryShared\CommandRepositoryInMemoryShared.projitems" Label="Shared" />

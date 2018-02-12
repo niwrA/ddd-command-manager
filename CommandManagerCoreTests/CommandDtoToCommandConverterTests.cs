@@ -125,7 +125,7 @@ namespace CommandManagerCoreTests
       repo.Setup(s => s.GetUnprocessedCommandStates()).Returns(existingCommands);
 
       var sut = new CommandDtoToCommandConverter(repo.Object, dateTimeProvider);
-      var sutResult = sut.GetUnprocessedCommands() as List<CommandDto>;
+      var sutResult = sut.GetUnprocessedCommands() as List<ICommandDto>;
 
       Assert.Single(sutResult);
       Assert.Equal("Test", sutResult.First().Entity);

@@ -19,7 +19,13 @@ namespace niwrA.CommandManager
     }
     public void PersistChanges()
     {
+      // todo: wrap in transaction
       _repo.PersistChanges();
+      // todo: persist changes on all services / repositories
+      foreach(var config in _configs.Values)
+      {
+      };
+
     }
     public void MergeCommands(IEnumerable<ICommand> commands, ICommandDtoToCommandConverter converter)
     {
