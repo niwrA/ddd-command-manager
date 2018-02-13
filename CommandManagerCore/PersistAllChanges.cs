@@ -8,7 +8,7 @@ namespace niwrA.CommandManager
 {
   public class PlatformSpecific
   {
-    public void PersistAllChanges(IEnumerable<ICommandProcessor> processors, ICommandStateRepository repo)
+    public void PersistAllChanges(IEnumerable<ICommandProcessor> processors, ICommandService service)
     {
       using (TransactionScope scope = new TransactionScope())
       {
@@ -16,7 +16,7 @@ namespace niwrA.CommandManager
         {
           processor.PersistChanges();
         }
-        repo.PersistChanges();
+        service.PersistChanges();
         scope.Complete();
       }
     }

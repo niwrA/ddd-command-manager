@@ -7,13 +7,13 @@ namespace niwrA.CommandManager
 {
   public class PlatformSpecific
   {
-    public void PersistAllChanges(IEnumerable<ICommandProcessor> processors, ICommandStateRepository repo)
+    public void PersistAllChanges(IEnumerable<ICommandProcessor> processors, ICommandService service)
     {
       foreach (var processor in processors)
       {
         processor.PersistChanges();
       }
-      repo.PersistChanges();
+      service.PersistChanges();
     }
   }
 }

@@ -1,6 +1,7 @@
 ﻿using niwrA.CommandManager.Helpers;
 using niwrA.CommandManager.Repositories;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace niwrA.CommandManager
 {
@@ -8,6 +9,9 @@ namespace niwrA.CommandManager
   {
     private ICommandDtoToCommandConverter _converter;
     private ICommandService _service;
+    private List<ICommandProcessor> _commandprocessors = new List<ICommandProcessor>();
+    private List<ICommandProcessor> _processors = new List<ICommandProcessor>();
+
     /// <summary>
     /// The default constructor creates an in memory commandstate repository
     /// and a default DateTimeProvider that uses UTC to provide timestamps
@@ -80,6 +84,7 @@ namespace niwrA.CommandManager
     public void AddCommandConfigs(IEnumerable<ICommandConfig> configs)
     {
       _converter.AddCommandConfigs(configs);
+      _commandprocessors = configs.Select(s => s.Processor).Distinct().ToList();
     }
     /// <summary>
     /// Configure all commands for a specific entity (root) to use the specified assembly
@@ -88,6 +93,7 @@ namespace niwrA.CommandManager
     public void AddProcessorConfigs(IEnumerable<IProcessorConfig> configs)
     {
       _converter.AddProcessorConfigs(configs);
+      _processors = configs.Select(s => s.Processor).Distinct().ToList();
     }
     /// <summary>
     /// Call all services to persist their state. On supported platforms (.NET Framework and .NETCore 2.x)
@@ -95,7 +101,10 @@ namespace niwrA.CommandManager
     /// </summary>
     public void PersistChanges()
     {
-        _service.PersistChanges();
+      IEnumerable<ICommandProcessor> processors = new List<ICommandProcessor>();
+      var persister = new PlatformSpecific();
+      processors = _processors.Union(_commandprocessors);
+      persister.PersistAllChanges(processors, _service);
     }
   }
 }

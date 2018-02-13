@@ -7,8 +7,8 @@ namespace niwrA.CommandManager
 {
   public class CommandService : ICommandService
   {
-    private Dictionary<string, IProcessorConfig> _configs = new Dictionary<string, IProcessorConfig>();
-    private Dictionary<string, ICommandConfig> _commandConfigs = new Dictionary<string, ICommandConfig>();
+    //private Dictionary<string, IProcessorConfig> _configs = new Dictionary<string, IProcessorConfig>();
+    //private Dictionary<string, ICommandConfig> _commandConfigs = new Dictionary<string, ICommandConfig>();
     private ICommandStateRepository _repo;
     private IDateTimeProvider _dateTimeProvider;
 
@@ -23,12 +23,8 @@ namespace niwrA.CommandManager
     /// </summary>
     public void PersistChanges()
     {
-      var processors = GetAllConfiguredProcessors();
-      var persister = new PlatformSpecific();
-      persister.PersistAllChanges(processors, _repo);
+      _repo.PersistChanges();
     }
-
-
 
     /// <summary>
     /// Merge commands is used to rebuild the target (entity) of a command by rerunning all previous commands
@@ -90,17 +86,6 @@ namespace niwrA.CommandManager
       command.Guid = Guid.NewGuid();
       command.CreatedOn = _dateTimeProvider.GetServerDateTime();
       return command;
-    }
-
-    /// <summary>
-    /// Gets all processors configured in the command configurations
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerable<ICommandProcessor> GetAllConfiguredProcessors()
-    {
-      var processors = _configs.Values.Select(w => w.Processor).Distinct().ToList();
-      var commandProcessors = _commandConfigs.Values.Select(w => w.Processor).Distinct().ToList();
-      return processors.Union(commandProcessors).ToList();
     }
   }
 }

@@ -35,6 +35,32 @@ namespace CommandManagerCoreTests
       serviceMock.Verify(s => s.PersistChanges(), Times.Once);
     }
     [Fact]
+    public void PersistChanges_Calls_ProcessorsPersistChanges()
+    {
+      var serviceMock = new Mock<ICommandService>();
+      var converterMock = new Mock<ICommandDtoToCommandConverter>();
+      var sut = new CommandManager(converterMock.Object, serviceMock.Object);
+      var processorInProcessorConfigMock = new Mock<ICommandProcessor>();
+      var processorInCommandConfigMock = new Mock<ICommandProcessor>();
+
+      var config = new ProcessorConfig("", processorInProcessorConfigMock.Object, "", "");
+      sut.AddProcessorConfigs(new List<IProcessorConfig> { config });
+
+      var commandConfig = new CommandConfigBuilder()
+        .WithProcessor(processorInCommandConfigMock.Object)
+        .Build();
+      var commandConfigWithDuplicateProcessor = new CommandConfigBuilder()
+        .WithProcessor(processorInProcessorConfigMock.Object)
+        .Build();
+      sut.AddCommandConfigs(new List<ICommandConfig> { commandConfig, commandConfigWithDuplicateProcessor });
+
+      sut.PersistChanges();
+
+      processorInProcessorConfigMock.Verify(s => s.PersistChanges(), Times.Once);
+      processorInCommandConfigMock.Verify(s => s.PersistChanges(), Times.Once);
+    }
+
+    [Fact]
     public void ProcessImportedCommands()
     {
       var serviceMock = new Mock<ICommandService>();
