@@ -5,17 +5,17 @@
     <Description>This (opiniated) domain driven design / microservices focussed command library makes it easy to match commands with one or more services. You can route all commands for a specific root to one or more processors, and add specific configurations for specific commands. Includes deseralization into command objects that can be executed. This is an alternative way of matching executable code with commands from message handlers, and matches the domain driven design philosophy perhaps a bit more closely. It also includes support for merging multiple commands to rebuild an object similar to event-sourcing.</Description>
     <Authors>Arwin van Arum</Authors>
     <Company>niwrA</Company>
-    <PackageReleaseNotes>- hide CommandDto behind the new ICommandDto interface
-- ICommandDto interface also exposes ICommandParameterDto for typed implementations</PackageReleaseNotes>
+    <PackageReleaseNotes>- added TransactionScope to PersistChanges
+- added code comments to document some of the methods</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/niwrA/ddd-command-manager</PackageProjectUrl>
     <RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>commands micro-services ddd domain</PackageTags>
-    <Version>2.0.6</Version>
-    <AssemblyVersion>2.0.6.0</AssemblyVersion>
-    <FileVersion>2.0.6.0</FileVersion>
+    <Version>2.0.7</Version>
+    <AssemblyVersion>2.0.7.0</AssemblyVersion>
+    <FileVersion>2.0.7.0</FileVersion>
   </PropertyGroup>
 
   <Import Project="..\CommandsShared\CommandsShared.projitems" Label="Shared" />

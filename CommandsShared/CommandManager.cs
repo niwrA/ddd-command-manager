@@ -1,9 +1,6 @@
 ﻿using niwrA.CommandManager.Helpers;
 using niwrA.CommandManager.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Transactions;
 
 namespace niwrA.CommandManager
 {
@@ -93,8 +90,8 @@ namespace niwrA.CommandManager
       _converter.AddProcessorConfigs(configs);
     }
     /// <summary>
-    /// Call all services to persist their state. This is executed in a transactionscope, so if one fails,
-    /// no changes should be made.
+    /// Call all services to persist their state. On supported platforms (.NET Framework and .NETCore 2.x)
+    /// this is executed in a transactionscope, so if one fails no changes should be made.
     /// </summary>
     public void PersistChanges()
     {

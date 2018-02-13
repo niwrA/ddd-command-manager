@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Transactions;
 
 namespace niwrA.CommandManager
 {
@@ -25,16 +24,12 @@ namespace niwrA.CommandManager
     public void PersistChanges()
     {
       var processors = GetAllConfiguredProcessors();
-      using (TransactionScope scope = new TransactionScope())
-      {
-        foreach (var processor in processors)
-        {
-          processor.PersistChanges();
-        }
-        _repo.PersistChanges();
-        scope.Complete();
-      }
+      var persister = new PlatformSpecific();
+      persister.PersistAllChanges(processors, _repo);
     }
+
+
+
     /// <summary>
     /// Merge commands is used to rebuild the target (entity) of a command by rerunning all previous commands
     /// first and executing the new commands against the rebuilt target (entity).
