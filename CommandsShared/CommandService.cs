@@ -77,7 +77,7 @@ namespace niwrA.CommandManager
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public ICommand CreateCommand<T>() where T : ICommand, new()
+    public T CreateCommand<T>() where T : ICommand, new()
     {
       var command = new T()
       {

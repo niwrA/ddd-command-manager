@@ -194,7 +194,7 @@ namespace niwrA.CommandManager
         void ProcessCommands(IEnumerable<ICommand> commands);
         void PersistChanges();
         void MergeCommands(IEnumerable<ICommand> commands, ICommandDtoToCommandConverter converter);
-        ICommand CreateCommand<T>() where T : ICommand, new();
+        T CreateCommand<T>() where T : ICommand, new();
     }
 
     public class ProcessorConfig : IProcessorConfig
