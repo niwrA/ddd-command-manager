@@ -20,6 +20,7 @@ namespace niwrA.CommandManager.Repositories
         public DateTime? ReceivedOn { get; set; }
         public DateTime CreatedOn { get; set; }
         public string UserName { get; set; }
+        public string TenantId { get; set; }
     }
     public class CommandStateRepositoryInMemory : ICommandStateRepository
     {

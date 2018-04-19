@@ -29,6 +29,7 @@ namespace niwrA.CommandManager
         DateTime CreatedOn { get; set; }
 
         string UserName { get; set; }
+        string TenantId { get; set; }
 
         ICommandStateRepository CommandRepository { get; set; }
         ICommandProcessor CommandProcessor { get; set; }
@@ -50,6 +51,7 @@ namespace niwrA.CommandManager
         DateTime? ReceivedOn { get; set; }
         DateTime CreatedOn { get; set; }
         string UserName { get; set; }
+        string TenantId { get; set; }
     }
     // defines the contract for a Command Repository implementation
     public interface ICommandStateRepository
@@ -113,6 +115,7 @@ namespace niwrA.CommandManager
         public DateTime CreatedOn { get { return _state.CreatedOn; } set { _state.CreatedOn = value; } }
         public DateTime? ReceivedOn { get { return _state.ReceivedOn; } set { _state.ReceivedOn = value; } }
         public string UserName { get { return _state.UserName; } set { _state.UserName = value; } }
+        public string TenantId { get { return _state.TenantId; } set { _state.TenantId = value; } }
 
         private void InitState()
         {
@@ -270,6 +273,7 @@ namespace niwrA.CommandManager
         Guid EntityRootGuid { get; set; }
         string EntityRoot { get; set; }
         string UserName { get; set; }
+        string TenantId { get; set; }
         DateTime CreatedOn { get; set; }
         string ParametersJson { get; set; }
         IParametersDto ParametersDto { get; set; }
@@ -293,6 +297,7 @@ namespace niwrA.CommandManager
             this.ExecutedOn = state.ExecutedOn;
             this.Command = state.Command; // we already have the proper name, so perhaps this can be done more cleanly,
             this.UserName = state.UserName;
+            this.TenantId = state.TenantId;
             // or we should save the CommandTypeId differently into the CommandState Table, ie. without EntityCommand suffix
             this.ParametersJson = state.ParametersJson;
             _state = state;
@@ -322,6 +327,7 @@ namespace niwrA.CommandManager
         public string Command { get; set; }
         public string CommandVersion { get; set; }
         public string UserName { get; set; }
+        public string TenantId { get; set; }
         public string ParametersJson { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime? ExecutedOn { get; set; }

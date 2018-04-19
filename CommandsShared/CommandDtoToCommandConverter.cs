@@ -112,6 +112,7 @@ namespace niwrA.CommandManager
             typedCommand.Guid = command.Guid;
             typedCommand.ParametersJson = command.ParametersJson;
             typedCommand.UserName = command.UserName;
+            typedCommand.TenantId = command.TenantId;
             typedCommand.Command = command.Command;
 
             typedCommand.CommandProcessor = processor;

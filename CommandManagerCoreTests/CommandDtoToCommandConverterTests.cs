@@ -56,6 +56,7 @@ namespace CommandManagerCoreTests
             Assert.Equal(commandDto.Guid, typedCommand.First().Guid);
             Assert.Equal(commandDto.Command, typedCommand.First().Command);
             Assert.Equal(commandDto.UserName, typedCommand.First().UserName);
+            Assert.Equal(commandDto.TenantId, typedCommand.First().TenantId);
         }
 
         [Fact(DisplayName = "ConvertCommands_CanConvertMultipleCommands")]
@@ -85,6 +86,8 @@ namespace CommandManagerCoreTests
                     EntityRootGuid = Guid.NewGuid(),
                     Guid = Guid.NewGuid(),
                     CreatedOn = new DateTime(2018, 1, 1),
+                    UserName = "userName",
+                    TenantId = "tenantId",
                     ParametersJson = @"{Name: 'James Smith'}"
                 };
                 return commandDto;
