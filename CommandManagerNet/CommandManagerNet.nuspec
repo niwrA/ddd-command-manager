@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>CommandManagerNet</id>
-    <version>2.0.9</version>
+    <version>2.0.10</version>
     <title>CommandManagerNet</title>
     <authors>Arwin van Arum</authors>
     <owners>Arwin van Arum</owners>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>Library that takes CommandDtos and deserializes and executes them against one or more configured command processors</summary>
     <description>This (opiniated) domain driven design / microservices focussed command library makes it easy to match commands with one or more services. You can route all commands for a specific root to one or more processors, and add specific configurations for specific commands. Includes deseralization into command objects that can be executed. This is an alternative way of matching executable code with commands from message handlers, and matches the domain driven design philosophy perhaps a bit more closely. It also includes support for merging multiple commands to rebuild an object similar to event-sourcing.</description>
-    <releaseNotes>- fix issue with either empty command or processor configs
+    <releaseNotes>- added tenantId to the base command interface and implementations for multi-tenancy support
     </releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>commands micro-services ddd domain</tags>

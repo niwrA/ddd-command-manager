@@ -10,9 +10,9 @@
     <RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>commands micro-services ddd domain</PackageTags>
-    <PackageReleaseNotes>- fix issue with either empty command or processor configs</PackageReleaseNotes>
+    <PackageReleaseNotes>- added tenantId to the base command interface and implementations for multi-tenancy support</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.9</Version>
+    <Version>2.0.10</Version>
     <AssemblyVersion>2.0.9.0</AssemblyVersion>
     <FileVersion>2.0.9.0</FileVersion>
   </PropertyGroup>
