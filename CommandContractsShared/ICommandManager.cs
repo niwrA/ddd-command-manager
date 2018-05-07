@@ -1,7 +1,6 @@
-﻿using niwrA.CommandManager.Contracts;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace niwrA.CommandManager
+namespace niwrA.CommandManager.Contracts
 {
   public interface ICommandManager
   {
