@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using niwrA.CommandManager.Contracts;
+using System.Collections.Generic;
 
 namespace niwrA.CommandManager
 {

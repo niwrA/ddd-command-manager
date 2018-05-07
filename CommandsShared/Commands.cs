@@ -8,92 +8,12 @@ using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using niwrA.CommandManager.Exceptions;
+using niwrA.CommandManager.Contracts;
+
 namespace niwrA.CommandManager
 {
     // define the interface for holding a command's state for instance for storage in a repository
-    public interface ICommand
-    {
-        Guid Guid { get; set; }
 
-        string Entity { get; set; }
-        Guid EntityGuid { get; set; }
-
-        string EntityRoot { get; set; }
-        Guid EntityRootGuid { get; set; }
-
-        string Command { get; set; }
-        string ParametersJson { get; set; }
-
-        DateTime? ExecutedOn { get; set; }
-        DateTime? ReceivedOn { get; set; }
-        DateTime CreatedOn { get; set; }
-
-        string UserName { get; set; }
-        string TenantId { get; set; }
-
-        ICommandStateRepository CommandRepository { get; set; }
-        ICommandProcessor CommandProcessor { get; set; }
-
-        void Execute();
-    }
-
-    public interface ICommandState
-    {
-        Guid Guid { get; set; }
-        Guid EntityGuid { get; set; }
-        string Entity { get; set; }
-        Guid EntityRootGuid { get; set; }
-        string EntityRoot { get; set; }
-        string Command { get; set; }
-        string CommandVersion { get; set; }
-        string ParametersJson { get; set; }
-        DateTime? ExecutedOn { get; set; }
-        DateTime? ReceivedOn { get; set; }
-        DateTime CreatedOn { get; set; }
-        string UserName { get; set; }
-        string TenantId { get; set; }
-    }
-    // defines the contract for a Command Repository implementation
-    public interface ICommandStateRepository
-    {
-        void PersistChanges();
-        ICommandState CreateCommandState(Guid guid);
-        IEnumerable<ICommandState> GetCommandStates();
-        IEnumerable<ICommandState> GetCommandStates(Guid entityGuid);
-        IEnumerable<ICommandState> GetUnprocessedCommandStates();
-    }
-
-    public interface ITimeStampedEntityState
-    {
-        Guid Guid { get; set; }
-        DateTime CreatedOn { get; set; }
-        DateTime UpdatedOn { get; set; }
-    }
-    public interface INamedEntity
-    {
-        DateTime CreatedOn { get; }
-        DateTime UpdatedOn { get; }
-        Guid Guid { get; }
-        string Name { get; }
-    }
-
-    public interface INamedEntityState : ITimeStampedEntityState
-    {
-        string Name { get; set; }
-    }
-    // defines the contract for an Entity Repository implementation
-    public interface IEntityRepository
-    {
-        void PersistChanges();
-        Task PersistChangesAsync();
-    }
-    public interface IEntityReadOnlyRepository { }
-
-    // defines the contract for entities compatible with commanding
-    public interface ICommandableEntity
-    {
-        Guid Guid { get; }
-    }
     // contains the shared logic for all commands
     public class CommandBase
     {
@@ -163,39 +83,7 @@ namespace niwrA.CommandManager
 
     }
     // the domain class for Commands
-    public interface ICommandProcessor
-    {
-        void PersistChanges();
-    }
 
-    public interface ICommandConfig
-    {
-        string Key { get; }
-        string CommandName { get; }
-        ICommand GetCommand(string parametersJson);
-        ICommandProcessor Processor { get; }
-        string Entity { get; }
-        string NameSpace { get; }
-        string Assembly { get; }
-    }
-
-    public interface IProcessorConfig
-    {
-        ICommandProcessor Processor { get; }
-        string EntityRoot { get; }
-        string NameSpace { get; }
-        string Assembly { get; }
-        ICommand GetCommand(string name, string entity, string parametersJson);
-    }
-
-    public interface ICommandService
-    {
-        void ProcessCommand(ICommand command);
-        void ProcessCommands(IEnumerable<ICommand> commands);
-        void PersistChanges();
-        void MergeCommands(IEnumerable<ICommand> commands, ICommandDtoToCommandConverter converter);
-        T CreateCommand<T>() where T : ICommand, new();
-    }
 
     public class ProcessorConfig : IProcessorConfig
     {
@@ -259,25 +147,7 @@ namespace niwrA.CommandManager
             return command;
         }
     }
-    public interface IParametersDto
-    {
 
-    }
-    public interface ICommandDto
-    {
-        Guid Guid { get; set; }
-        string Command { get; set; }
-        string CommandVersion { get; set; }
-        Guid EntityGuid { get; set; }
-        string Entity { get; set; }
-        Guid EntityRootGuid { get; set; }
-        string EntityRoot { get; set; }
-        string UserName { get; set; }
-        string TenantId { get; set; }
-        DateTime CreatedOn { get; set; }
-        string ParametersJson { get; set; }
-        IParametersDto ParametersDto { get; set; }
-    }
     public class CommandDto : ICommandDto
     {
         private ICommandState _state;

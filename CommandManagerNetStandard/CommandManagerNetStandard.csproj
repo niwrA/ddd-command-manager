@@ -21,6 +21,8 @@
 
   <Import Project="..\CommandRepositoryInMemoryShared\CommandRepositoryInMemoryShared.projitems" Label="Shared" />
 
+  <Import Project="..\CommandContractsShared\CommandContractsShared.projitems" Label="Shared" />
+
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>

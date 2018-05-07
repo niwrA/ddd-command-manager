@@ -4,6 +4,7 @@ using Xunit;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using niwrA.CommandManager.Contracts;
 
 namespace CommandManagerCoreTests
 {

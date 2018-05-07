@@ -1,5 +1,6 @@
 ﻿using Moq;
 using niwrA.CommandManager;
+using niwrA.CommandManager.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;

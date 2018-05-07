@@ -1,6 +1,7 @@
 ﻿using niwrA.CommandManager;
 using Moq;
 using System;
+using niwrA.CommandManager.Contracts;
 
 namespace CommandManagerCoreTests.Commands
 {
