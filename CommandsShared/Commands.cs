@@ -147,7 +147,7 @@ namespace niwrA.CommandManager
             return command;
         }
     }
-
+    [Serializable]
     public class CommandDto : ICommandDto
     {
         private ICommandState _state;
