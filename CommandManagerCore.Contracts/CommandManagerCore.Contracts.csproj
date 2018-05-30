@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>ddd-command-manager-core.snk</AssemblyOriginatorKeyFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Package containing contracts (dtos, interfaces) for CommandMangaerCore</Description>
+    <Copyright>Copyright 2018, Arwin van Arum</Copyright>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/niwrA/ddd-command-manager</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
+    <PackageReleaseNotes>First version, among others because dotnet pack does not yet support auto-including additional projects (https://github.com/NuGet/Home/issues/3891).</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="..\CommandContractsShared\CommandContractsShared.projitems" Label="Shared" />
