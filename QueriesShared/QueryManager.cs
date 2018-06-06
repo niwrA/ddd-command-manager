@@ -1,4 +1,5 @@
-﻿using niwrA.QueryManager.Contracts;
+﻿using niwrA.CommandManager.Helpers;
+using niwrA.QueryManager.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,17 @@ namespace niwrA.QueryManager
         private IQueryService _service;
         private List<IQueryProcessor> _queryprocessors = new List<IQueryProcessor>();
         private List<IQueryProcessor> _processors = new List<IQueryProcessor>();
-
+        public QueryManager()
+        {
+            var dateTimeProvider = new DefaultDateTimeProvider();
+            _converter = new QueryDtoToQueryConverter(dateTimeProvider);
+            _service = new QueryService(dateTimeProvider);
+        }
+        public QueryManager(IQueryService service, IQueryDtoToQueryConverter converter)
+        {
+            _service = service;
+            _converter = converter;
+        }
         public void AddProcessorConfigs(IEnumerable<IProcessorConfig> configs)
         {
             _converter.AddProcessorConfigs(configs);

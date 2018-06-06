@@ -10,11 +10,11 @@ namespace niwrA.QueryManager
     {
         private Dictionary<string, IProcessorConfig> _configs = new Dictionary<string, IProcessorConfig>();
         private Dictionary<string, IQueryConfig> _queryConfigs = new Dictionary<string, IQueryConfig>();
-        private IDateTimeProvider _dateTimeProvider;
+        private CommandManager.IDateTimeProvider _dateTimeProvider;
         private ILookup<string, IQueryConfig> _queryLookups;
         private ILookup<string, IProcessorConfig> _processorLookups;
 
-        public QueryDtoToQueryConverter(IDateTimeProvider dateTimeProvider)
+        public QueryDtoToQueryConverter(CommandManager.IDateTimeProvider dateTimeProvider)
         {
             _dateTimeProvider = dateTimeProvider;
             _queryLookups = new List<IQueryConfig>().ToLookup(o => o.Key);

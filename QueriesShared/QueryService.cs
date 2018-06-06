@@ -7,9 +7,9 @@ namespace niwrA.QueryManager
 {
     public class QueryService : IQueryService
     {
-        private readonly IDateTimeProvider _dateTimeProvider;
+        private readonly CommandManager.IDateTimeProvider _dateTimeProvider;
 
-        public QueryService(IDateTimeProvider dateTimeProvider)
+        public QueryService(CommandManager.IDateTimeProvider dateTimeProvider)
         {
             _dateTimeProvider = dateTimeProvider;
         }

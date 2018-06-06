@@ -15,7 +15,7 @@ namespace CommandManagerCoreTests
         [Fact(DisplayName = "ProcessQuery_CanTargetMultipleProcessorsForOneQuery")]
         public void ProcessQuery_CanTargetMultipleProcessorsForOneQuery()
         {
-            var dateTimeProvider = new Mock<IDateTimeProvider>().Object;
+            var dateTimeProvider = new Mock<niwrA.CommandManager.IDateTimeProvider>().Object;
             var processor1 = new Mock<Fakes.ITestQueryService>();
             var processor2 = new Mock<Fakes.ITestQueryService>();
             var processor3 = new Mock<Fakes.ITestQueryService>();
@@ -119,7 +119,7 @@ namespace CommandManagerCoreTests
         public Mock<Fakes.ITestQueryService> TestServiceMock = new Mock<Fakes.ITestQueryService>();
         public IQueryDtoToQueryConverter Build()
         {
-            var dateTimeProvider = new Mock<IDateTimeProvider>().Object;
+            var dateTimeProvider = new Mock<niwrA.CommandManager.IDateTimeProvider>().Object;
             TestServiceMock = new Mock<Fakes.ITestQueryService>();
 
             var sut = new QueryDtoToQueryConverter(dateTimeProvider);

@@ -46,6 +46,7 @@ namespace niwrA.QueryManager.Contracts
         string TenantId { get; set; }
         IQueryResultDto Result { get; set; }
     }
+
     public interface IQueryProcessor
     {
     }

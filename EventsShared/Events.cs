@@ -1,14 +1,14 @@
 ﻿using Newtonsoft.Json;
-using niwrA.QueryManager.Contracts;
+using niwrA.EventManager.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace niwrA.QueryManager
+namespace niwrA.EventManager
 {
-    public class QueryBase
+    public class EventBase
     {
-        public QueryBase()
+        public EventBase()
         {
         }
 
@@ -28,55 +28,55 @@ namespace niwrA.QueryManager
 
         public DateTime? ExecutedOn { get; set; }
 
-        public string Query { get; set; }
-        public string QueryVersion { get; set; }
+        public string Event { get; set; }
+        public string EventVersion { get; set; }
 
 
-        private IQueryProcessor _queryProcessor;
-        public virtual IQueryProcessor QueryProcessor { get { return _queryProcessor; } set { _queryProcessor = value; } }
+        private IEventProcessor _eventProcessor;
+        public virtual IEventProcessor EventProcessor { get { return _eventProcessor; } set { _eventProcessor = value; } }
 
     }
-    // the domain class for Querys
+    // the domain class for Events
 
 
     public class ProcessorConfig : IProcessorConfig
     {
-        public ProcessorConfig(string entityRoot, IQueryProcessor processor, string nameSpace, string assembly)
+        public ProcessorConfig(string entityRoot, IEventProcessor processor, string nameSpace, string assembly)
         {
             EntityRoot = entityRoot;
             Processor = processor;
             NameSpace = nameSpace;
             Assembly = assembly;
         }
-        public IQueryProcessor Processor { get; }
+        public IEventProcessor Processor { get; }
         public string EntityRoot { get; }
         public string NameSpace { get; }
         public string Assembly { get; }
-        public IQuery GetQuery(string name, string entity, string parametersJson)
+        public IEvent GetEvent(string name, string entity, string parametersJson)
         {
-            var queryConfig = new QueryConfig(name, entity, this.Processor, this.NameSpace, this.Assembly);
-            return queryConfig.GetQuery(parametersJson);
+            var eventConfig = new EventConfig(name, entity, this.Processor, this.NameSpace, this.Assembly);
+            return eventConfig.GetEvent(parametersJson);
         }
     }
-    public class QueryConfig : IQueryConfig
+    public class EventConfig : IEventConfig
     {
-        public QueryConfig(string queryName, string entity, IQueryProcessor processor, string nameSpace, string assembly)
+        public EventConfig(string eventName, string entity, IEventProcessor processor, string nameSpace, string assembly)
         {
-            QueryName = queryName;
+            EventName = eventName;
             EntityRoot = entity;
             Processor = processor;
             NameSpace = nameSpace;
             Assembly = assembly;
         }
-        public string Key { get { return QueryName + EntityRoot + "Query"; } }
-        public string QueryName { get; }
+        public string Key { get { return EventName + EntityRoot + "Event"; } }
+        public string EventName { get; }
         public string EntityRoot { get; }
         public string NameSpace { get; }
         public string Assembly { get; }
-        public IQueryProcessor Processor { get; }
-        public IQuery GetQuery(string json)
+        public IEventProcessor Processor { get; }
+        public IEvent GetEvent(string json)
         {
-            IQuery query;
+            IEvent e;
 
             var type = Type.GetType(NameSpace + "." + Key + ", " + Assembly);
 
@@ -89,25 +89,25 @@ namespace niwrA.QueryManager
             {
                 var insert = @"'$type': '" + NameSpace + "." + Key + @", " + Assembly + "', ";
                 json = json.Trim().Insert(1, insert);
-                query = JsonConvert.DeserializeObject<IQuery>(json, new JsonSerializerSettings
+                e = JsonConvert.DeserializeObject<IEvent>(json, new JsonSerializerSettings
                 {
                     TypeNameHandling = TypeNameHandling.Auto
                 });
             }
             else
             {
-                query = Activator.CreateInstance(type) as IQuery;
+                e = Activator.CreateInstance(type) as IEvent;
             }
-            return query;
+            return e;
         }
     }
     [Serializable]
-    public class QueryDto : IQueryDto
+    public class EventDto : IEventDto
     {
         private string _entityRoot = "";
         private Guid _entityRootGuid;
 
-        public QueryDto()
+        public EventDto()
         {
         }
 
@@ -125,8 +125,8 @@ namespace niwrA.QueryManager
             set { _entityRoot = value; }
         }
 
-        public string Query { get; set; }
-        public string QueryVersion { get; set; }
+        public string Event { get; set; }
+        public string EventVersion { get; set; }
         public string UserName { get; set; }
         public string TenantId { get; set; }
         public string ParametersJson { get; set; }
@@ -134,6 +134,12 @@ namespace niwrA.QueryManager
         public DateTime? ExecutedOn { get; set; }
         public DateTime? ReceivedOn { get; set; }
         public CommandManager.Contracts.IParametersDto ParametersDto { get; set; }
-        public IQueryResultDto Result { get; set; }
     }
+
+
+    //public interface IDateTimeProvider
+    //{
+    //    DateTime GetSessionDateTime();
+    //    DateTime GetServerDateTime();
+    //}
 }
