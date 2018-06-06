@@ -21,6 +21,8 @@
 
   <Import Project="..\CommandRepositoryInMemoryShared\CommandRepositoryInMemoryShared.projitems" Label="Shared" />
 
+  <Import Project="..\QueriesShared\QueriesShared.projitems" Label="Shared" />
+
   <ItemGroup>
     <PackageReference Include="CommandManagerCore.Contracts" Version="1.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />

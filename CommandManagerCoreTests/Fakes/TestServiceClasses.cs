@@ -1,5 +1,7 @@
 ﻿using niwrA.CommandManager;
 using niwrA.CommandManager.Contracts;
+using niwrA.QueryManager;
+using niwrA.QueryManager.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -44,7 +46,15 @@ namespace CommandManagerCoreTests.Fakes
       _state.Name = name;
     }
   }
-  public class CreateRootEntityCommand : CommandBase, ICommand
+    public class GetRootEntityQuery : QueryBase, IQuery
+    {
+        public string Name { get; set; }
+        public void Execute()
+        {
+            ((ITestQueryService)QueryProcessor).Get(EntityGuid, Name);
+        }
+    }
+    public class CreateRootEntityCommand : CommandBase, ICommand
   {
     public string Name { get; set; }
     public void Execute()
@@ -90,7 +100,24 @@ namespace CommandManagerCoreTests.Fakes
     IRootEntity GetRootEntity(Guid guid);
     IRootEntity CreateRootEntity(Guid guid, string Name);
   }
-  public class TestService : ITestService
+    public interface ITestQueryService : IQueryProcessor
+    {
+        IRootEntity Get(Guid guid);
+        IRootEntity Get(Guid guid, string Name);
+    }
+    public class TestQueryService : ITestQueryService
+    {
+        public IRootEntity Get(Guid guid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IRootEntity Get(Guid guid, string Name)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class TestService : ITestService
   {
     private ITestServiceRepository _repo;
     public TestService() { }

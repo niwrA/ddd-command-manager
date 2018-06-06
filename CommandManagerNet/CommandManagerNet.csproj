@@ -70,5 +70,6 @@
   </ItemGroup>
   <Import Project="..\CommandRepositoryInMemoryShared\CommandRepositoryInMemoryShared.projitems" Label="Shared" />
   <Import Project="..\CommandsShared\CommandsShared.projitems" Label="Shared" />
+  <Import Project="..\QueriesShared\QueriesShared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -24,7 +24,6 @@ namespace CommandManagerCoreTests
             Assert.Equal("new name", command.Name);
         }
 
-
         [Fact(DisplayName = "CanFindCommand_ByEntityAndEntityRootName")]
         public void CanFindCommand_ByEntityAndEntityRootName()
         {
