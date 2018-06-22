@@ -10,11 +10,11 @@
     <RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>commands micro-services ddd domain</PackageTags>
-    <PackageReleaseNotes>- add Serializeable attribute to CommandDto</PackageReleaseNotes>
+    <PackageReleaseNotes>- add support for Events (EventManager) and Queries (QueryManager)</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.17</Version>
-    <AssemblyVersion>2.0.17.0</AssemblyVersion>
-    <FileVersion>2.0.17.0</FileVersion>
+    <Version>2.1.0</Version>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <FileVersion>2.1.0.0</FileVersion>
     <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
   </PropertyGroup>
   <Import Project="..\CommandsShared\CommandsShared.projitems" Label="Shared" />
