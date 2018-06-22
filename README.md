@@ -95,7 +95,7 @@ And that's it! This should call our CreateContact method on our ContactsService.
 Note that we didn't specify an EntityRoot in our CommandDto - in this case it will assume Entity is also the EntityRoot.
 
 ### Queries and Events
-Currently still in a separate branch but already on NuGet as version 2.1.0, support for Events and Queries has been added, each with their own manager (QueryManager, EventManager), with a similar setup in as far as applicable to those message flows. This allows you to use this library as a general setup for managing message flow, making it easy to support (Faster) non-http protocols in any circumstance. 
+Support for Events and Queries has been added, each with their own manager (QueryManager, EventManager), with a similar setup in as far as applicable to those message flows. This allows you to use this library as a general setup for managing message flow, making it easy to support (Faster) non-http protocols in any circumstance. 
 
 ## Advanced Setup
 
