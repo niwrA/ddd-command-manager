@@ -41,14 +41,14 @@ namespace niwrA.CommandManager
         {
             if (_state == null && _repository != null)
             {
-                this._state = _repository.CreateCommandState(Guid.NewGuid());
+                this._state = _repository.CreateCommandState(System.Guid.NewGuid());
             }
             if (_state != null)
             {
                 this._state.Command = this.GetType().Name;
-                if (_state.Guid == null || _state.Guid == Guid.Empty)
+                if (_state.Guid == null || _state.Guid == System.Guid.Empty)
                 {
-                    _state.Guid = Guid.NewGuid();
+                    _state.Guid = System.Guid.NewGuid();
                 }
             }
         }
@@ -64,7 +64,7 @@ namespace niwrA.CommandManager
                 _state.ParametersJson = value;
             }
         }
-        public Guid Guid { get { return _state.Guid; } set { _state.Guid = value; } }
+        public Guid? Guid { get { return _state.Guid; } set { if (value.HasValue) { _state.Guid = value.Value; } } }
         public string Entity { get { return _state.Entity; } set { _state.Entity = value; } }
         public string EntityGuid { get { return _state.EntityGuid; } set { _state.EntityGuid = value; } }
 
@@ -173,7 +173,7 @@ namespace niwrA.CommandManager
             _state = state;
         }
 
-        public Guid Guid { get; set; }
+        public Guid? Guid { get; set; }
         public string EntityGuid { get; set; }
         public string Entity { get; set; }
         // default to Entity values if only Entity is provided,

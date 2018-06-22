@@ -6,7 +6,7 @@ namespace niwrA.EventManager.Contracts
 {
     public interface IEvent
     {
-        Guid Guid { get; set; }
+        Guid? Guid { get; set; }
         string EntityRoot { get; set; }
         string Event { get; set; }
         string EventVersion { get; set; }
@@ -22,8 +22,11 @@ namespace niwrA.EventManager.Contracts
 
     public interface IEventDto
     {
-        Guid Guid { get; set; }
+        Guid? Guid { get; set; }
+        string Entity { get; set; }
+        string EntityGuid { get; set; }
         string EntityRoot { get; set; }
+        string EntityRootGuid { get; set; }
         string Event { get; set; }
         string EventVersion { get; set; }
         string ParametersJson { get; set; }

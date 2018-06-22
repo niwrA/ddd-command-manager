@@ -19,7 +19,7 @@ namespace niwrA.QueryManager
 
 
         public virtual string ParametersJson { get; set; }
-        public Guid Guid { get; set; }
+        public Guid? Guid { get; set; }
         public string Entity { get; set; }
         public Guid EntityGuid { get; set; }
 
@@ -105,15 +105,14 @@ namespace niwrA.QueryManager
     public class QueryDto : IQueryDto
     {
         private string _entityRoot = "";
-        private Guid _entityRootGuid;
 
         public QueryDto()
         {
         }
 
-        public Guid Guid { get; set; }
-        public Guid EntityGuid { get; set; }
+        public Guid? Guid { get; set; }
         public string Entity { get; set; }
+        public string EntityGuid { get; set; }
         // default to Entity values if only Entity is provided,
         // for backward compatibility and ease of use
         public string EntityRoot
@@ -124,6 +123,7 @@ namespace niwrA.QueryManager
             }
             set { _entityRoot = value; }
         }
+        public string EntityRootGuid { get; set; }
 
         public string Query { get; set; }
         public string QueryVersion { get; set; }

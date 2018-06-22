@@ -100,7 +100,7 @@ namespace CommandManagerCoreTests
             {
                 Entity = "RootEntity",
                 Event = "Handle",
-                EntityGuid = Guid.NewGuid(),
+                EntityGuid = Guid.NewGuid().ToString(),
                 EntityRoot = "RootEntity",
                 Guid = Guid.NewGuid(),
                 CreatedOn = new DateTime(2018, 1, 1),

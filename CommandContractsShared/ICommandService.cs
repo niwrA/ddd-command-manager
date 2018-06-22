@@ -7,7 +7,7 @@ namespace niwrA.CommandManager.Contracts
 {
     public interface ICommand
     {
-        Guid Guid { get; set; }
+        Guid? Guid { get; set; }
 
         string Entity { get; set; }
         string EntityGuid { get; set; }
@@ -118,7 +118,7 @@ namespace niwrA.CommandManager.Contracts
     }
     public interface ICommandDto
     {
-        Guid Guid { get; set; }
+        Guid? Guid { get; set; }
         string Command { get; set; }
         string CommandVersion { get; set; }
         string EntityGuid { get; set; }
