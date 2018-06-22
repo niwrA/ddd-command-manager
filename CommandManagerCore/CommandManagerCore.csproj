@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
@@ -10,19 +10,28 @@
     <RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>commands micro-services ddd domain</PackageTags>
-    <PackageReleaseNotes>- added tenantId to the base command interface and implementations for multi-tenancy support</PackageReleaseNotes>
+    <PackageReleaseNotes>- add support for Events (EventManager) and Queries (QueryManager)</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.10</Version>
-    <AssemblyVersion>2.0.9.0</AssemblyVersion>
-    <FileVersion>2.0.9.0</FileVersion>
+    <Version>2.1.0</Version>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <FileVersion>2.1.0.0</FileVersion>
+    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
   </PropertyGroup>
-
   <Import Project="..\CommandsShared\CommandsShared.projitems" Label="Shared" />
 
   <Import Project="..\CommandRepositoryInMemoryShared\CommandRepositoryInMemoryShared.projitems" Label="Shared" />
 
+  <Import Project="..\QueriesShared\QueriesShared.projitems" Label="Shared" />
+
+  <Import Project="..\EventsShared\EventsShared.projitems" Label="Shared" />
+
   <ItemGroup>
+    <PackageReference Include="CommandManagerCore.Contracts" Version="1.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CommandManagerCore.Contracts\CommandManagerCore.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

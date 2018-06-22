@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace niwrA.CommandManager
+namespace niwrA.CommandManager.Contracts
 {
     public interface ICommandDtoToCommandConverter
     {

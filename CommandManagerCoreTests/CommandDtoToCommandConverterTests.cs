@@ -4,6 +4,7 @@ using Xunit;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using niwrA.CommandManager.Contracts;
 
 namespace CommandManagerCoreTests
 {
@@ -22,7 +23,6 @@ namespace CommandManagerCoreTests
             var command = processorConfig.GetCommand("Rename", "RootEntity", json) as Fakes.RenameRootEntityCommand;
             Assert.Equal("new name", command.Name);
         }
-
 
         [Fact(DisplayName = "CanFindCommand_ByEntityAndEntityRootName")]
         public void CanFindCommand_ByEntityAndEntityRootName()

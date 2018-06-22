@@ -1,5 +1,6 @@
 ﻿using System;
 using niwrA.CommandManager;
+using niwrA.CommandManager.Contracts;
 
 namespace CommandManagerCoreTests.Fakes
 {

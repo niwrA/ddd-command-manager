@@ -15,8 +15,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\CommandNotConfiguredException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DefaultDateTimeProvider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ICommandDtoToCommandConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ICommandManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\TypeNotFoundException.cs" />
   </ItemGroup>
   <ItemGroup>

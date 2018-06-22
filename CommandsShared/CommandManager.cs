@@ -1,4 +1,5 @@
-﻿using niwrA.CommandManager.Helpers;
+﻿using niwrA.CommandManager.Contracts;
+using niwrA.CommandManager.Helpers;
 using niwrA.CommandManager.Repositories;
 using System.Collections.Generic;
 using System.Linq;
