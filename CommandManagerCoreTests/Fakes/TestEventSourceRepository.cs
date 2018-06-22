@@ -8,32 +8,32 @@ namespace CommandManagerCoreTests.Fakes
 {
   public class RootEntityState : IRootEntityState
   {
-    public RootEntityState(Guid guid)
+    public RootEntityState(string guid)
     {
       Guid = guid;
     }
     public string Name { get; set; }
     public string Email { get; set; }
-    public Guid Guid { get; }
+    public string Guid { get; }
   }
 
   public class TestServiceEventSourceRepository : ITestServiceRepository
   {
-    private ConcurrentDictionary<Guid, IRootEntityState> _rootEntities = new ConcurrentDictionary<Guid, IRootEntityState>();
+    private ConcurrentDictionary<string, IRootEntityState> _rootEntities = new ConcurrentDictionary<string, IRootEntityState>();
 
-    public IRootEntityState CreateRootEntityState(Guid guid, string name)
+    public IRootEntityState CreateRootEntityState(string guid, string name)
     {
       IRootEntityState state = GetOrCreateRootEntityState(guid);
       state.Name = name;
       return state;
     }
 
-    private IRootEntityState GetOrCreateRootEntityState(Guid guid)
+    private IRootEntityState GetOrCreateRootEntityState(string guid)
     {
       return _rootEntities.GetOrAdd(guid, new RootEntityState(guid));
     }
 
-    public IRootEntityState GetRootEntityState(Guid guid)
+    public IRootEntityState GetRootEntityState(string guid)
     {
       return GetOrCreateRootEntityState(guid);
     }

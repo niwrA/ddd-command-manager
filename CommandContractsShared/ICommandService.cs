@@ -10,10 +10,10 @@ namespace niwrA.CommandManager.Contracts
         Guid Guid { get; set; }
 
         string Entity { get; set; }
-        Guid EntityGuid { get; set; }
+        string EntityGuid { get; set; }
 
         string EntityRoot { get; set; }
-        Guid EntityRootGuid { get; set; }
+        string EntityRootGuid { get; set; }
 
         string Command { get; set; }
         string ParametersJson { get; set; }
@@ -34,9 +34,9 @@ namespace niwrA.CommandManager.Contracts
     public interface ICommandState
     {
         Guid Guid { get; set; }
-        Guid EntityGuid { get; set; }
+        string EntityGuid { get; set; }
         string Entity { get; set; }
-        Guid EntityRootGuid { get; set; }
+        string EntityRootGuid { get; set; }
         string EntityRoot { get; set; }
         string Command { get; set; }
         string CommandVersion { get; set; }
@@ -53,7 +53,7 @@ namespace niwrA.CommandManager.Contracts
         void PersistChanges();
         ICommandState CreateCommandState(Guid guid);
         IEnumerable<ICommandState> GetCommandStates();
-        IEnumerable<ICommandState> GetCommandStates(Guid entityGuid);
+        IEnumerable<ICommandState> GetCommandStates(string entityGuid);
         IEnumerable<ICommandState> GetUnprocessedCommandStates();
     }
 
@@ -121,9 +121,9 @@ namespace niwrA.CommandManager.Contracts
         Guid Guid { get; set; }
         string Command { get; set; }
         string CommandVersion { get; set; }
-        Guid EntityGuid { get; set; }
+        string EntityGuid { get; set; }
         string Entity { get; set; }
-        Guid EntityRootGuid { get; set; }
+        string EntityRootGuid { get; set; }
         string EntityRoot { get; set; }
         string UserName { get; set; }
         string TenantId { get; set; }

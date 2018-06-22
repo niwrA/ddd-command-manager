@@ -37,7 +37,7 @@ namespace niwrA.CommandManager
     {
       // todo: replay should be done once for each unique entity, or we need to refresh
       // this can probably move to a higher lever for even better caching?
-      var processedEntities = new HashSet<Guid>();
+      var processedEntities = new HashSet<string>();
       // the existing entity for every command
       foreach (var command in commands)
       {

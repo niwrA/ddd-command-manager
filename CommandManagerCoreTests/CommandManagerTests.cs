@@ -24,7 +24,7 @@ namespace CommandManagerCoreTests
       sut.AddProcessorConfigs(new List<IProcessorConfig> { config });
       sut.ProcessCommands(new List<CommandDto> { commandDto });
 
-      testService.Verify(v => v.CreateRootEntity(It.IsAny<Guid>(), It.IsAny<string>()), Times.Once);
+      testService.Verify(v => v.CreateRootEntity(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
     }
     [Fact]
     public void PersistChanges_Calls_ServicePersistChanges()

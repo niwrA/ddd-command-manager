@@ -46,7 +46,7 @@ namespace CommandManagerCoreTests
 
             var typedCommand = sut.ConvertCommand(commandDto);
 
-            Assert.NotEqual(Guid.Empty, commandDto.EntityRootGuid);
+            Assert.True(!string.IsNullOrWhiteSpace(commandDto.EntityRootGuid));
             Assert.Equal(sutBuilder.TestServiceMock.Object, typedCommand.First().CommandProcessor);
             Assert.Equal(commandDto.CreatedOn, typedCommand.First().CreatedOn);
             Assert.Equal(commandDto.Entity, typedCommand.First().Entity);
@@ -81,9 +81,9 @@ namespace CommandManagerCoreTests
                 {
                     Entity = "RootEntity",
                     Command = "Create",
-                    EntityGuid = Guid.NewGuid(),
+                    EntityGuid = Guid.NewGuid().ToString(),
                     EntityRoot = "RootEntity",
-                    EntityRootGuid = Guid.NewGuid(),
+                    EntityRootGuid = Guid.NewGuid().ToString(),
                     Guid = Guid.NewGuid(),
                     CreatedOn = new DateTime(2018, 1, 1),
                     UserName = "userName",

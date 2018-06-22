@@ -66,10 +66,10 @@ namespace niwrA.CommandManager
         }
         public Guid Guid { get { return _state.Guid; } set { _state.Guid = value; } }
         public string Entity { get { return _state.Entity; } set { _state.Entity = value; } }
-        public Guid EntityGuid { get { return _state.EntityGuid; } set { _state.EntityGuid = value; } }
+        public string EntityGuid { get { return _state.EntityGuid; } set { _state.EntityGuid = value; } }
 
         public string EntityRoot { get { return _state.EntityRoot; } set { _state.EntityRoot = value; } }
-        public Guid EntityRootGuid { get { return _state.EntityRootGuid; } set { _state.EntityRootGuid = value; } }
+        public string EntityRootGuid { get { return _state.EntityRootGuid; } set { _state.EntityRootGuid = value; } }
 
         public DateTime? ExecutedOn { get { return _state.ExecutedOn; } set { _state.ExecutedOn = value; } }
 
@@ -152,7 +152,7 @@ namespace niwrA.CommandManager
     {
         private ICommandState _state;
         private string _entityRoot = "";
-        private Guid _entityRootGuid;
+        private string _entityRootGuid;
 
         public CommandDto()
         {
@@ -174,7 +174,7 @@ namespace niwrA.CommandManager
         }
 
         public Guid Guid { get; set; }
-        public Guid EntityGuid { get; set; }
+        public string EntityGuid { get; set; }
         public string Entity { get; set; }
         // default to Entity values if only Entity is provided,
         // for backward compatibility and ease of use
@@ -186,11 +186,11 @@ namespace niwrA.CommandManager
             }
             set { _entityRoot = value; }
         }
-        public Guid EntityRootGuid
+        public string EntityRootGuid
         {
             get
             {
-                if (Guid.Empty == _entityRootGuid) { return EntityGuid; } else { return _entityRootGuid; }
+                if (string.IsNullOrWhiteSpace(_entityRootGuid)) { return EntityGuid; } else { return _entityRootGuid; }
             }
             set { _entityRootGuid = value; }
         }
