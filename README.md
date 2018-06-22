@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/niwrA/ddd-command-manager.svg?branch=master)](https://travis-ci.org/niwrA/ddd-command-manager)
-
+!Note: waiting for travis to update to Mono 2.7 so it supports strong naming
 CommandManagerNetStandard
 [![NuGet](https://img.shields.io/nuget/v/CommandManagerNetStandard.svg)](https://www.nuget.org/packages/CommandManagerNetStandard/)
 [![NuGet](https://img.shields.io/nuget/dt/CommandManagerNetStandard.svg)](https://www.nuget.org/packages/CommandManagerNetStandard/)
