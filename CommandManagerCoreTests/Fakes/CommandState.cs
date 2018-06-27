@@ -8,9 +8,9 @@ namespace CommandManagerCoreTests.Fakes
     {
         public string Command { get; set; }
         public string CommandVersion { get; set; }
-        public Guid EntityGuid { get; set; }
+        public string EntityGuid { get; set; }
         public string Entity { get; set; }
-        public Guid EntityRootGuid { get; set; }
+        public string EntityRootGuid { get; set; }
         public string EntityRoot { get; set; }
         public DateTime? ExecutedOn { get; set; }
         public Guid Guid { get; set; }

@@ -19,7 +19,7 @@ namespace niwrA.EventManager
 
 
         public virtual string ParametersJson { get; set; }
-        public Guid Guid { get; set; }
+        public Guid? Guid { get; set; }
         public string Entity { get; set; }
         public Guid EntityGuid { get; set; }
 
@@ -105,14 +105,13 @@ namespace niwrA.EventManager
     public class EventDto : IEventDto
     {
         private string _entityRoot = "";
-        private Guid _entityRootGuid;
 
         public EventDto()
         {
         }
 
-        public Guid Guid { get; set; }
-        public Guid EntityGuid { get; set; }
+        public Guid? Guid { get; set; }
+        public string EntityGuid { get; set; }
         public string Entity { get; set; }
         // default to Entity values if only Entity is provided,
         // for backward compatibility and ease of use
@@ -124,7 +123,7 @@ namespace niwrA.EventManager
             }
             set { _entityRoot = value; }
         }
-
+        public string EntityRootGuid { get; set; }
         public string Event { get; set; }
         public string EventVersion { get; set; }
         public string UserName { get; set; }

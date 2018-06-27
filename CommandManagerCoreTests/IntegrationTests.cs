@@ -54,10 +54,10 @@ namespace CommandManagerCoreTests
 
             sut2.ProcessCommands(typedCommands);
 
-            processor1.Verify(s => s.CreateRootEntity(It.IsAny<Guid>(), It.IsAny<string>()), Times.Once);
-            processor2.Verify(s => s.CreateRootEntity(It.IsAny<Guid>(), It.IsAny<string>()), Times.Once);
-            processor3.Verify(s => s.CreateRootEntity(It.IsAny<Guid>(), It.IsAny<string>()), Times.Once);
-            processor4.Verify(s => s.CreateRootEntity(It.IsAny<Guid>(), It.IsAny<string>()), Times.Once);
+            processor1.Verify(s => s.CreateRootEntity(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            processor2.Verify(s => s.CreateRootEntity(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            processor3.Verify(s => s.CreateRootEntity(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            processor4.Verify(s => s.CreateRootEntity(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
         }
 
 
@@ -67,7 +67,7 @@ namespace CommandManagerCoreTests
         // from existing commands and applying new commands to that state
         public void CommandManager_CanMergeCommandsWithExistingStateAndApply()
         {
-            Guid entityGuid = Guid.NewGuid();
+            string entityGuid = Guid.NewGuid().ToString();
 
             // create some existing commands
             // todo: builder

@@ -12,7 +12,7 @@ namespace CommandManagerCoreTests.Fakes
 {
     public interface IRootEntityState
     {
-        Guid Guid { get; }
+        string Guid { get; }
         string Name { get; set; }
         string Email { get; set; }
     }
@@ -102,13 +102,13 @@ namespace CommandManagerCoreTests.Fakes
     }
     public interface ITestServiceRepository : IEntityRepository
     {
-        IRootEntityState CreateRootEntityState(Guid guid, string name);
-        IRootEntityState GetRootEntityState(Guid guid);
+        IRootEntityState CreateRootEntityState(string guid, string name);
+        IRootEntityState GetRootEntityState(string guid);
     }
     public interface ITestService : ICommandProcessor
     {
-        IRootEntity GetRootEntity(Guid guid);
-        IRootEntity CreateRootEntity(Guid guid, string Name);
+        IRootEntity GetRootEntity(string guid);
+        IRootEntity CreateRootEntity(string guid, string Name);
     }
     public interface ITestQueryService : IQueryProcessor
     {
@@ -152,12 +152,12 @@ namespace CommandManagerCoreTests.Fakes
         {
             _repo = repo;
         }
-        public IRootEntity GetRootEntity(Guid guid)
+        public IRootEntity GetRootEntity(string guid)
         {
             var state = _repo.GetRootEntityState(guid);
             return new RootEntity(state);
         }
-        public IRootEntity CreateRootEntity(Guid guid, string name)
+        public IRootEntity CreateRootEntity(string guid, string name)
         {
             var state = _repo.CreateRootEntityState(guid, name);
             return new RootEntity(state);

@@ -9,7 +9,7 @@ namespace CommandManagerCoreTests
   {
     private string _entity = "RootEntity";
     private string _command = "Create";
-    private Guid _entityGuid = Guid.NewGuid();
+    private string _entityGuid = Guid.NewGuid().ToString();
     private Guid _guid = Guid.NewGuid();
     private DateTime _createdOn = new DateTime(2018, 1, 1);
     private string _parametersJson = @"{Name: 'James Smith'}";
@@ -26,7 +26,7 @@ namespace CommandManagerCoreTests
       };
       return commandDto;
     }
-    public CommandDtoBuilder WithEntityGuid(Guid guid)
+    public CommandDtoBuilder WithEntityGuid(string guid)
     {
       _entityGuid = guid;
       return this;

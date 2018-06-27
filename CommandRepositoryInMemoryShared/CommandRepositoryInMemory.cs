@@ -10,9 +10,9 @@ namespace niwrA.CommandManager.Repositories
     public class CommandState : ICommandState
     {
         public Guid Guid { get; set; }
-        public Guid EntityGuid { get; set; }
+        public string EntityGuid { get; set; }
         public string Entity { get; set; }
-        public Guid EntityRootGuid { get; set; }
+        public string EntityRootGuid { get; set; }
         public string EntityRoot { get; set; }
         public string Command { get; set; }
         public string CommandVersion { get; set; }
@@ -47,7 +47,7 @@ namespace niwrA.CommandManager.Repositories
             return _commandDictionary.Values;
         }
 
-        public IEnumerable<ICommandState> GetCommandStates(Guid entityGuid)
+        public IEnumerable<ICommandState> GetCommandStates(string entityGuid)
         {
             return _commandDictionary.Values.Where(s => s.EntityGuid == entityGuid).ToList();
         }

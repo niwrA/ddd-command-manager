@@ -17,7 +17,7 @@ namespace CommandManagerCoreTests.Commands
             T cmd = new T()
             {
                 CommandRepository = commandRepoMock.Object,
-                EntityGuid = Guid.NewGuid(),
+                EntityGuid = Guid.NewGuid().ToString(),
                 CommandProcessor = processor
             };
             return cmd;

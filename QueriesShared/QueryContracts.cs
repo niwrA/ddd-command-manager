@@ -6,7 +6,7 @@ namespace niwrA.QueryManager.Contracts
 {
     public interface IQuery
     {
-        Guid Guid { get; set; }
+        Guid? Guid { get; set; }
         string EntityRoot { get; set; }
         string Query { get; set; }
         string QueryVersion { get; set; }
@@ -34,8 +34,11 @@ namespace niwrA.QueryManager.Contracts
     }
     public interface IQueryDto
     {
-        Guid Guid { get; set; }
+        Guid? Guid { get; set; }
+        string Entity { get; set; }
+        string EntityGuid { get; set; }
         string EntityRoot { get; set; }
+        string EntityRootGuid { get; set; }
         string Query { get; set; }
         string QueryVersion { get; set; }
         string ParametersJson { get; set; }
