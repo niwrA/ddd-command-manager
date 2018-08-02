@@ -98,6 +98,7 @@ namespace niwrA.CommandManager
 
         private void SetCommandProperties(ICommandDto command, ICommandProcessor processor, ICommand typedCommand)
         {
+            typedCommand.Guid = command.Guid;
             typedCommand.CommandRepository = _repo;
             CopyCommandDtoIntoCommand(command, processor, typedCommand);
         }
@@ -110,7 +111,6 @@ namespace niwrA.CommandManager
             typedCommand.EntityGuid = command.EntityGuid;
             typedCommand.EntityRoot = command.EntityRoot;
             typedCommand.EntityRootGuid = command.EntityRootGuid;
-            typedCommand.Guid = command.Guid;
             typedCommand.ParametersJson = command.ParametersJson;
             typedCommand.UserName = command.UserName;
             typedCommand.TenantId = command.TenantId;

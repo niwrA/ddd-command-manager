@@ -41,7 +41,11 @@ namespace niwrA.CommandManager
         {
             if (_state == null && _repository != null)
             {
-                this._state = _repository.CreateCommandState(System.Guid.NewGuid());
+                if (!_guid.HasValue)
+                {
+                    _guid = System.Guid.NewGuid();
+                }
+                this._state = _repository.CreateCommandState(_guid.Value);
             }
             if (_state != null)
             {
@@ -64,7 +68,11 @@ namespace niwrA.CommandManager
                 _state.ParametersJson = value;
             }
         }
-        public Guid? Guid { get { return _state.Guid; } set { if (value.HasValue) { _state.Guid = value.Value; } } }
+        public Guid? Guid
+        {
+            get { return _guid.HasValue ? _guid : _state.Guid; }
+            set { if (_state != null) { if (value.HasValue) { _state.Guid = value.Value; } } else { _guid = value; } }
+        }
         public string Entity { get { return _state.Entity; } set { _state.Entity = value; } }
         public string EntityGuid { get { return _state.EntityGuid; } set { _state.EntityGuid = value; } }
 
@@ -79,6 +87,8 @@ namespace niwrA.CommandManager
         public ICommandStateRepository CommandRepository { get { return _repository; } set { _repository = value; InitState(); } }
 
         private ICommandProcessor _commandProcessor;
+        private Guid? _guid;
+
         public virtual ICommandProcessor CommandProcessor { get { return _commandProcessor; } set { _commandProcessor = value; } }
 
     }

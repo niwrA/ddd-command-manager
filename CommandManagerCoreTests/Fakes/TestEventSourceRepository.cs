@@ -6,45 +6,74 @@ using System.Threading.Tasks;
 
 namespace CommandManagerCoreTests.Fakes
 {
-  public class RootEntityState : IRootEntityState
-  {
-    public RootEntityState(string guid)
+    public class RootEntityState : IRootEntityState
     {
-      Guid = guid;
+        public RootEntityState(string guid)
+        {
+            Guid = guid;
+        }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Guid { get; }
     }
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public string Guid { get; }
-  }
-
-  public class TestServiceEventSourceRepository : ITestServiceRepository
-  {
-    private ConcurrentDictionary<string, IRootEntityState> _rootEntities = new ConcurrentDictionary<string, IRootEntityState>();
-
-    public IRootEntityState CreateRootEntityState(string guid, string name)
+    public class TestServiceRepository : ITestServiceRepository
     {
-      IRootEntityState state = GetOrCreateRootEntityState(guid);
-      state.Name = name;
-      return state;
-    }
+        private ConcurrentDictionary<string, IRootEntityState> _rootEntities = new ConcurrentDictionary<string, IRootEntityState>();
 
-    private IRootEntityState GetOrCreateRootEntityState(string guid)
-    {
-      return _rootEntities.GetOrAdd(guid, new RootEntityState(guid));
-    }
+        public IRootEntityState CreateRootEntityState(string guid, string name)
+        {
+            IRootEntityState state = GetOrCreateRootEntityState(guid);
+            state.Name = name;
+            return state;
+        }
 
-    public IRootEntityState GetRootEntityState(string guid)
-    {
-      return GetOrCreateRootEntityState(guid);
-    }
+        private IRootEntityState GetOrCreateRootEntityState(string guid)
+        {
+            return _rootEntities.GetOrAdd(guid, new RootEntityState(guid));
+        }
 
-    public void PersistChanges()
-    {
-    }
+        public IRootEntityState GetRootEntityState(string guid)
+        {
+            return GetOrCreateRootEntityState(guid);
+        }
 
-    public Task PersistChangesAsync()
-    {
-      throw new NotImplementedException();
+        public void PersistChanges()
+        {
+        }
+
+        public Task PersistChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
-  }
+    public class TestServiceEventSourceRepository : ITestServiceRepository
+    {
+        private ConcurrentDictionary<string, IRootEntityState> _rootEntities = new ConcurrentDictionary<string, IRootEntityState>();
+
+        public IRootEntityState CreateRootEntityState(string guid, string name)
+        {
+            IRootEntityState state = GetOrCreateRootEntityState(guid);
+            state.Name = name;
+            return state;
+        }
+
+        private IRootEntityState GetOrCreateRootEntityState(string guid)
+        {
+            return _rootEntities.GetOrAdd(guid, new RootEntityState(guid));
+        }
+
+        public IRootEntityState GetRootEntityState(string guid)
+        {
+            return GetOrCreateRootEntityState(guid);
+        }
+
+        public void PersistChanges()
+        {
+        }
+
+        public Task PersistChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

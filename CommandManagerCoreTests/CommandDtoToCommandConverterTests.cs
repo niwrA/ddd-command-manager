@@ -27,13 +27,17 @@ namespace CommandManagerCoreTests
         [Fact(DisplayName = "CanFindCommand_ByEntityAndEntityRootName")]
         public void CanFindCommand_ByEntityAndEntityRootName()
         {
-            var json = @"{'Name': 'new name'}";
+            // var json = @"{'Name': 'new name'}";
             CommandDtoConverterBuilder builder = new CommandDtoConverterBuilder();
-            var converter = builder.Build();
             var processorConfig = new ProcessorConfig("RootEntity", builder.TestServiceMock.Object, _namespace, _assembly);
+            var processorConfig2 = new ProcessorConfig("RootEntityBlah", builder.TestServiceMock.Object, _namespace, _assembly);
+            var converter = builder
+                .WithProcessorConfig(processorConfig)
+                .WithProcessorConfig(processorConfig2)
+                .Build();
             var commandDto = new CommandDtoBuilder().Build();
-            //manager.ConvertCommand(command)
-            //Assert.Equal("new name", command.First().Command);
+            var command = converter.ConvertCommand(commandDto);
+            Assert.Equal("Create", command.First().Command);
         }
 
         [Fact(DisplayName = "ConvertCommand_CanConvertACommandDtoToACommand")]
@@ -97,6 +101,8 @@ namespace CommandManagerCoreTests
         public class CommandDtoConverterBuilder
         {
             public Mock<Fakes.ITestService> TestServiceMock = new Mock<Fakes.ITestService>();
+            private List<IProcessorConfig> _processorConfigs = new List<IProcessorConfig>();
+
             public ICommandDtoToCommandConverter Build()
             {
                 var dateTimeProvider = new Mock<IDateTimeProvider>().Object;
@@ -105,13 +111,18 @@ namespace CommandManagerCoreTests
                 repo.Setup(s => s.CreateCommandState(It.IsAny<Guid>())).Returns(new Fakes.CommandState());
 
                 var sut = new CommandDtoToCommandConverter(repo.Object, dateTimeProvider);
-                var processorConfigs = new List<IProcessorConfig>
+                if(!_processorConfigs.Any())
                 {
-                    new ProcessorConfig("RootEntity", TestServiceMock.Object, _namespace, _assembly)
-                };
+                    _processorConfigs.Add(new ProcessorConfig("RootEntity", TestServiceMock.Object, _namespace, _assembly));
+                }
+                sut.AddProcessorConfigs(_processorConfigs);
 
-                sut.AddProcessorConfigs(processorConfigs);
                 return sut;
+            }
+            public CommandDtoConverterBuilder WithProcessorConfig(IProcessorConfig processorConfig)
+            {
+                _processorConfigs.Add(processorConfig);
+                return this;
             }
         }
 
