@@ -88,9 +88,12 @@ namespace niwrA.CommandManager.Contracts
     {
         Guid Guid { get; }
     }
+
     public interface ICommandProcessor
     {
         void PersistChanges();
+
+        event Action<IEnumerable<ICommandDto>> AddCommandsToBatch;
     }
 
     public interface ICommandConfig

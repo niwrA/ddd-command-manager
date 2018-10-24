@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommandsShared", "CommandsShared\CommandsShared.shproj", "{E836653D-F62D-4262-89CD-622BF092F8E3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandManagerCore", "CommandManagerCore\CommandManagerCore.csproj", "{6FCFECA4-8E46-453E-A582-0B7CBF145445}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2FBAEDA4-A22F-4B6F-B97D-A8289CD67D50} = {2FBAEDA4-A22F-4B6F-B97D-A8289CD67D50}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandManagerCoreTests", "CommandManagerCoreTests\CommandManagerCoreTests.csproj", "{ED6AD813-2ECB-4A2B-BC79-89140DDD187D}"
 EndProject
