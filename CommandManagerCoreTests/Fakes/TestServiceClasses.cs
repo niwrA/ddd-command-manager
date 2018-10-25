@@ -17,7 +17,7 @@ namespace CommandManagerCoreTests.Fakes
         string Email { get; set; }
     }
 
-    public interface IRootEntity
+    public interface IRootEntity: IQueryResult
     {
         string Name { get; }
         string Email { get; }
@@ -59,9 +59,10 @@ namespace CommandManagerCoreTests.Fakes
     public class GetRootEntityQuery : QueryBase, IQuery
     {
         public string Name { get; set; }
-        public void Execute()
+        public IQueryResult Execute()
         {
-            ((ITestQueryService)QueryProcessor).Get(EntityGuid, Name);
+            var result = ((ITestQueryService)QueryProcessor).Get(EntityGuid, Name);
+            return result;
         }
     }
     public class CreateRootEntityCommand : CommandBase, ICommand

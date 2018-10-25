@@ -1,8 +1,10 @@
-﻿using Moq;
+﻿using CommandManagerCoreTests.Fakes;
+using Moq;
 using niwrA.QueryManager;
 using niwrA.QueryManager.Contracts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xunit;
 
@@ -17,43 +19,25 @@ namespace CommandManagerCoreTests
         {
             var dateTimeProvider = new Mock<niwrA.CommandManager.IDateTimeProvider>().Object;
             var processor1 = new Mock<Fakes.ITestQueryService>();
-            var processor2 = new Mock<Fakes.ITestQueryService>();
-            var processor3 = new Mock<Fakes.ITestQueryService>();
-            var processor4 = new Mock<Fakes.ITestQueryService>();
+            var queryResult = new Mock<IRootEntity>();
+            processor1.Setup(s => s.Get(It.IsAny<Guid>(), It.IsAny<string>())).Returns(queryResult.Object);
 
             var sut = new QueryDtoToQueryConverter(dateTimeProvider);
             var queryDto = new QueryDtoBuilder().Build();
             var queryConfigBuilder = new QueryConfigBuilder();
-            var configs = new List<IQueryConfig>
-            {
-              queryConfigBuilder
-              .WithQueryName("Get")
-              .WithEntity("RootEntity")
-              .WithProcessor(processor1.Object)
-              .Build(),
-              queryConfigBuilder
-              .WithQueryName("Get")
-              .WithEntity("RootEntity")
-              .WithProcessor(processor2.Object).Build()            };
 
             var processorConfigs = new List<niwrA.QueryManager.Contracts.IProcessorConfig>
             {
-                new ProcessorConfig("RootEntity", processor3.Object, _namespace, _assembly),
-                new ProcessorConfig("RootEntity", processor4.Object, _namespace, _assembly)
+                new ProcessorConfig("RootEntity", processor1.Object, _namespace, _assembly),
             };
 
-            sut.AddQueryConfigs(configs);
             sut.AddProcessorConfigs(processorConfigs);
 
             var typedQueries = sut.ConvertQuery(queryDto);
             var sut2 = new QueryService(dateTimeProvider);
 
-            sut2.ProcessQueries(typedQueries);
-
-            processor1.Verify(s => s.Get(It.IsAny<Guid>(), It.IsAny<string>()), Times.Once);
-            processor2.Verify(s => s.Get(It.IsAny<Guid>(), It.IsAny<string>()), Times.Once);
-            processor3.Verify(s => s.Get(It.IsAny<Guid>(), It.IsAny<string>()), Times.Once);
-            processor4.Verify(s => s.Get(It.IsAny<Guid>(), It.IsAny<string>()), Times.Once);
+            var results = sut2.ProcessQueries(typedQueries);
+            Assert.Single(results);
         }
 
     }
