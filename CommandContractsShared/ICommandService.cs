@@ -93,7 +93,7 @@ namespace niwrA.CommandManager.Contracts
     {
         void PersistChanges();
 
-        event Action<IEnumerable<ICommandDto>> AddCommandsToBatch;
+        event Action<IEnumerable<ICommandDto>> GeneratedCommandsForBatch;
     }
 
     public interface ICommandConfig

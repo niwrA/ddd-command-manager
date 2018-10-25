@@ -72,7 +72,7 @@ namespace niwrA.CommandManager
         public void ProcessCommand(ICommand command)
         {
             var pendingCommands = new List<ICommandDto>();
-            command.CommandProcessor.AddCommandsToBatch += (commands) =>
+            command.CommandProcessor.GeneratedCommandsForBatch += (commands) =>
             {
                 pendingCommands.AddRange(commands);
             };

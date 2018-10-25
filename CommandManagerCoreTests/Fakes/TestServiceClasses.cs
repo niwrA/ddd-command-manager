@@ -172,12 +172,12 @@ namespace CommandManagerCoreTests.Fakes
                 EntityGuid = guid
             };
 
-            AddCommandsToBatch?.Invoke(new List<ICommandDto> { dto });
+            GeneratedCommandsForBatch?.Invoke(new List<ICommandDto> { dto });
 
             return new RootEntity(state);
         }
 
-        public event Action<IEnumerable<ICommandDto>> AddCommandsToBatch;
+        public event Action<IEnumerable<ICommandDto>> GeneratedCommandsForBatch;
 
         public void PersistChanges()
         {
