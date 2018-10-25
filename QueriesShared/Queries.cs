@@ -19,7 +19,7 @@ namespace niwrA.QueryManager
 
 
         public virtual string ParametersJson { get; set; }
-        public Guid? Guid { get; set; }
+        public Guid Guid { get; set; }
         public string Entity { get; set; }
         public Guid EntityGuid { get; set; }
 
@@ -110,7 +110,7 @@ namespace niwrA.QueryManager
         {
         }
 
-        public Guid? Guid { get; set; }
+        public Guid Guid { get; set; }
         public string Entity { get; set; }
         public string EntityGuid { get; set; }
         // default to Entity values if only Entity is provided,

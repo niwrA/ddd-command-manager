@@ -36,10 +36,10 @@ namespace niwrA.QueryManager
             _queryprocessors = configs.Select(s => s.Processor).Distinct().ToList();
         }
 
-        public void ProcessQueries(IEnumerable<IQueryDto> queries)
+        public IEnumerable<IIndexedQueryResult> ProcessQueries(IEnumerable<IQueryDto> queries)
         {
             var typedQueries = _converter.ConvertQueries(queries);
-            _service.ProcessQueries(typedQueries);
+            return _service.ProcessQueries(typedQueries);
         }
     }
 }
