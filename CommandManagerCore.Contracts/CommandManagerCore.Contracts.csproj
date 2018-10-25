@@ -8,9 +8,10 @@
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/niwrA/ddd-command-manager</PackageProjectUrl>
     <RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
-    <PackageReleaseNotes>- separate contracts package in Core, among others because dotnet pack does not yet support auto-including additional projects (https://github.com/NuGet/Home/issues/3891).
-- updated Guids to be strings for Entity to support different types of Ids from Guid, and made Command Guid optional so you can choose to assign these later or not use them at all for instance when the Commands aren't stored anyway</PackageReleaseNotes>
-    <Version>3.0.0</Version>
+    <PackageReleaseNotes>- Support adding commands to running batch from the CommandProcessor</PackageReleaseNotes>
+    <Version>3.2.3</Version>
+    <AssemblyVersion>3.2.3.0</AssemblyVersion>
+    <FileVersion>3.2.3.0</FileVersion>
   </PropertyGroup>
 
   <Import Project="..\CommandContractsShared\CommandContractsShared.projitems" Label="Shared" />
