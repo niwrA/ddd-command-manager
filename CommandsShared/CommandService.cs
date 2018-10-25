@@ -11,16 +11,12 @@ namespace niwrA.CommandManager
         private ICommandStateRepository _repo;
         private IDateTimeProvider _dateTimeProvider;
         private ICommandManager _commandManager;
+        public event Action<IEnumerable<ICommandDto>> ProcessorGeneratedCommands;
 
         public CommandService(ICommandStateRepository repo, IDateTimeProvider dateTimeProvider)
         {
             _repo = repo;
             _dateTimeProvider = dateTimeProvider;
-        }
-
-        public void SetCommandManager(ICommandManager commandManager)
-        {
-            _commandManager = commandManager;
         }
 
         /// <summary>
@@ -83,8 +79,7 @@ namespace niwrA.CommandManager
 
             command.Execute();
             command.ExecutedOn = _dateTimeProvider.GetServerDateTime();
-
-            _commandManager.ProcessCommands(pendingCommands);
+            this.ProcessorGeneratedCommands?.Invoke(pendingCommands);
         }
         /// <summary>
         /// Create a command of the specified type.

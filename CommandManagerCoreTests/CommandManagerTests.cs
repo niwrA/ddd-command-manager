@@ -89,7 +89,6 @@ namespace CommandManagerCoreTests
             var service = new CommandService(repo, dateTimeProvider);
             var converter = new CommandDtoToCommandConverter(repo, dateTimeProvider);
             var sut = new CommandManager(converter, service);
-            service.SetCommandManager(sut);
             var commandDtos = new List<ICommandDto> { new CommandDtoBuilder().Build() };
 
             Assert.Null(((CommandDto)commandDtos.First()).ExecutedOn);
@@ -118,7 +117,6 @@ namespace CommandManagerCoreTests
             var service = new CommandService(repo, dateTimeProvider);
             var converter = new CommandDtoToCommandConverter(repo, dateTimeProvider);
             var sut = new CommandManager(converter, service);
-            service.SetCommandManager(sut);
             var commandDtos = new List<ICommandDto> { new CommandDtoBuilder().Build() };
 
             Assert.Null(((CommandDto)commandDtos.First()).ExecutedOn);

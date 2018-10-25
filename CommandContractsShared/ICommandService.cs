@@ -141,5 +141,6 @@ namespace niwrA.CommandManager.Contracts
         void PersistChanges();
         void MergeCommands(IEnumerable<ICommand> commands, ICommandDtoToCommandConverter converter);
         T CreateCommand<T>() where T : ICommand, new();
+        event Action<IEnumerable<ICommandDto>> ProcessorGeneratedCommands;
     }
 }

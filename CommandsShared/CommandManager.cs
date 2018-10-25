@@ -23,7 +23,14 @@ namespace niwrA.CommandManager
             var dateTimeProvider = new DefaultDateTimeProvider();
             _converter = new CommandDtoToCommandConverter(repo, dateTimeProvider);
             _service = new CommandService(repo, dateTimeProvider);
+            _service.ProcessorGeneratedCommands += OnProcessorGeneratedCommands;
         }
+
+        private void OnProcessorGeneratedCommands(IEnumerable<ICommandDto> commands)
+        {
+            ProcessCommands(commands);
+        }
+
         /// <summary>
         /// Specify your own commandstate repository implementation and your own DateTimeProvider
         /// implementation with this constructor
@@ -34,6 +41,7 @@ namespace niwrA.CommandManager
         {
             _converter = new CommandDtoToCommandConverter(repo, dateTimeProvider);
             _service = new CommandService(repo, dateTimeProvider);
+            _service.ProcessorGeneratedCommands += OnProcessorGeneratedCommands;
         }
         /// <summary>
         /// Specify your own CommandDtoToCommandConverter and your own CommandService with this constructor.
@@ -45,6 +53,7 @@ namespace niwrA.CommandManager
         {
             _converter = converter;
             _service = service;
+            _service.ProcessorGeneratedCommands += OnProcessorGeneratedCommands;
         }
         /// <summary>
         /// Process the specified commands (execute them)
