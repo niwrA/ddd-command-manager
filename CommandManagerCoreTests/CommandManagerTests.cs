@@ -88,6 +88,7 @@ namespace CommandManagerCoreTests
             var dateTimeProvider = new DefaultDateTimeProvider();
             var service = new CommandService(repo, dateTimeProvider);
             var converter = new CommandDtoToCommandConverter(repo, dateTimeProvider);
+            var sut = new CommandManager(converter, service);
             var commandDtos = new List<ICommandDto> { new CommandDtoBuilder().Build() };
 
             Assert.Null(((CommandDto)commandDtos.First()).ExecutedOn);
@@ -96,7 +97,6 @@ namespace CommandManagerCoreTests
             var processor = new Fakes.TestService(testServiceRepo);
 
             var processorConfig = new ProcessorConfig("RootEntity", processor, _namespace, _assembly);
-            var sut = new CommandManager(converter, service);
             sut.AddProcessorConfigs(new List<niwrA.CommandManager.Contracts.IProcessorConfig> { processorConfig });
 
             var commandState = repo.CreateCommandState(Guid.NewGuid());
@@ -107,6 +107,40 @@ namespace CommandManagerCoreTests
             var sutResult = sut.ProcessImportedCommands();
 
             Assert.NotNull(commandState.ExecutedOn);
+        }
+
+        [Fact]
+        public void ProcessImportedCommands_WithPendingCommands()
+        {
+            var repo = new CommandStateRepositoryInMemory();
+            var dateTimeProvider = new DefaultDateTimeProvider();
+            var service = new CommandService(repo, dateTimeProvider);
+            var converter = new CommandDtoToCommandConverter(repo, dateTimeProvider);
+            var sut = new CommandManager(converter, service);
+            var commandDtos = new List<ICommandDto> { new CommandDtoBuilder().Build() };
+
+            Assert.Null(((CommandDto)commandDtos.First()).ExecutedOn);
+
+            var testServiceRepo = new Fakes.TestServiceRepository();
+            var processor = new Fakes.TestService(testServiceRepo);
+
+            var processorConfig = new ProcessorConfig("RootEntity", processor, _namespace, _assembly);
+            sut.AddProcessorConfigs(new List<niwrA.CommandManager.Contracts.IProcessorConfig> { processorConfig });
+
+            var entityGuid = Guid.NewGuid().ToString();
+            var dto = new CommandDto
+            {
+                //EntityRoot = "RootEntity",
+                Entity = "RootEntity",
+                Command = "Create",
+                EntityGuid = entityGuid
+            };
+
+            var commands = new List<ICommandDto> { dto };
+            sut.ProcessCommands(commands);
+
+            var entity = processor.GetRootEntity(entityGuid);
+            Assert.Equal("newname", entity.Name);
         }
     }
 }

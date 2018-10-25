@@ -148,6 +148,7 @@ namespace CommandManagerCoreTests.Fakes
     public class TestService : ITestService
     {
         private ITestServiceRepository _repo;
+
         public TestService() { }
         public TestService(ITestServiceRepository repo)
         {
@@ -161,8 +162,23 @@ namespace CommandManagerCoreTests.Fakes
         public IRootEntity CreateRootEntity(string guid, string name)
         {
             var state = _repo.CreateRootEntityState(guid, name);
+
+            var dto = new CommandDto
+            {
+                EntityRoot = "RootEntity",
+                Entity = "RootEntity",
+                Command = "Rename",
+                ParametersJson = $@"{{ 'name': 'newname', 'originalName': '{name}' }}",
+                EntityGuid = guid
+            };
+
+            GeneratedCommandsForBatch?.Invoke(new List<ICommandDto> { dto });
+
             return new RootEntity(state);
         }
+
+        public event Action<IEnumerable<ICommandDto>> GeneratedCommandsForBatch;
+
         public void PersistChanges()
         {
             _repo.PersistChanges();

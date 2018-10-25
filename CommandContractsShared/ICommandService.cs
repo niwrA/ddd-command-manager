@@ -88,9 +88,12 @@ namespace niwrA.CommandManager.Contracts
     {
         Guid Guid { get; }
     }
+
     public interface ICommandProcessor
     {
         void PersistChanges();
+
+        event Action<IEnumerable<ICommandDto>> GeneratedCommandsForBatch;
     }
 
     public interface ICommandConfig
@@ -138,5 +141,6 @@ namespace niwrA.CommandManager.Contracts
         void PersistChanges();
         void MergeCommands(IEnumerable<ICommand> commands, ICommandDtoToCommandConverter converter);
         T CreateCommand<T>() where T : ICommand, new();
+        event Action<IEnumerable<ICommandDto>> ProcessorGeneratedCommands;
     }
 }
