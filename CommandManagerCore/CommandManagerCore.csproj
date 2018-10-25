@@ -10,12 +10,11 @@
     <RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>commands micro-services ddd domain</PackageTags>
-    <PackageReleaseNotes>- changed Guids to strings for Entity and nullable for Command</PackageReleaseNotes>
+    <PackageReleaseNotes>- support IQueryResult</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>3.0.0</Version>
-    <AssemblyVersion>3.0.0.0</AssemblyVersion>
-    <FileVersion>3.0.0.0</FileVersion>
-    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <Version>3.1.3</Version>
+    <AssemblyVersion>3.1.3.0</AssemblyVersion>
+    <FileVersion>3.1.3.0</FileVersion>
   </PropertyGroup>
   <Import Project="..\CommandsShared\CommandsShared.projitems" Label="Shared" />
 

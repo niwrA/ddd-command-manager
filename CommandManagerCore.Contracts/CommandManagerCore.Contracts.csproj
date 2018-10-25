@@ -1,11 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>ddd-command-manager-core.snk</AssemblyOriginatorKeyFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>Package containing contracts (dtos, interfaces) for CommandMangaerCore</Description>
+    <Description>Package containing contracts (dtos, interfaces) for CommandManagerCore</Description>
     <Copyright>Copyright 2018, Arwin van Arum</Copyright>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/niwrA/ddd-command-manager</PackageProjectUrl>

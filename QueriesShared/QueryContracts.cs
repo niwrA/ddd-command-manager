@@ -6,7 +6,7 @@ namespace niwrA.QueryManager.Contracts
 {
     public interface IQuery
     {
-        Guid? Guid { get; set; }
+        Guid Guid { get; set; }
         string EntityRoot { get; set; }
         string Query { get; set; }
         string QueryVersion { get; set; }
@@ -17,7 +17,7 @@ namespace niwrA.QueryManager.Contracts
         string UserName { get; set; }
         string TenantId { get; set; }
         IQueryProcessor QueryProcessor { get; set; }
-        void Execute();
+        IQueryResult Execute();
     }
     public enum ResultBodyFormat
     {
@@ -27,14 +27,24 @@ namespace niwrA.QueryManager.Contracts
         BinaryFormatter = 3,
         Xml = 4
     }
+    public interface IQueryResult
+    {
+    }
+
     public interface IQueryResultDto
     {
         ResultBodyFormat BodyFormat { get; }
         string Body { get; }
     }
+    public class QueryResultDto : IQueryResultDto
+    {
+        public ResultBodyFormat BodyFormat { get; set; }
+
+        public string Body { get; set; }
+    }
     public interface IQueryDto
     {
-        Guid? Guid { get; set; }
+        Guid Guid { get; set; }
         string Entity { get; set; }
         string EntityGuid { get; set; }
         string EntityRoot { get; set; }
@@ -73,12 +83,16 @@ namespace niwrA.QueryManager.Contracts
         string Assembly { get; }
         IQuery GetQuery(string name, string entityRoot, string parametersJson);
     }
-
+    public interface IIndexedQueryResult
+    {
+        Guid Guid { get; set; }
+        IQueryResult QueryResult { get; set; }
+    }
     public interface IQueryService
     {
         T CreateQuery<T>() where T : IQuery, new();
-        void ProcessQueries(IEnumerable<IQuery> commands);
-        void ProcessQueries(IQuery query);
+        IEnumerable<IIndexedQueryResult> ProcessQueries(IEnumerable<IQuery> queries);
+        IQueryResult ProcessQuery(IQuery query);
     }
 
     public interface IQueryDtoToQueryConverter
@@ -93,7 +107,7 @@ namespace niwrA.QueryManager.Contracts
 
     public interface IQueryManager
     {
-        void ProcessQueries(IEnumerable<IQueryDto> commands);
+        IEnumerable<IIndexedQueryResult> ProcessQueries(IEnumerable<IQueryDto> queries);
         void AddQueryConfigs(IEnumerable<IQueryConfig> configs);
         void AddProcessorConfigs(IEnumerable<IProcessorConfig> configs);
     }

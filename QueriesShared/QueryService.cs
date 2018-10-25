@@ -5,6 +5,20 @@ using System.Text;
 
 namespace niwrA.QueryManager
 {
+    public class IndexedQueryResult: IIndexedQueryResult
+    {
+        public IndexedQueryResult()
+        {
+
+        }
+        public IndexedQueryResult(Guid guid, IQueryResult queryResult)
+        {
+            Guid = guid;
+            QueryResult = queryResult;
+        }
+        public Guid Guid { get; set; }
+        public IQueryResult QueryResult { get; set; }
+    }
     public class QueryService : IQueryService
     {
         private readonly CommandManager.IDateTimeProvider _dateTimeProvider;
@@ -13,27 +27,29 @@ namespace niwrA.QueryManager
         {
             _dateTimeProvider = dateTimeProvider;
         }
-        public void ProcessQueries(IEnumerable<IQuery> queries)
+        public IEnumerable<IIndexedQueryResult> ProcessQueries(IEnumerable<IQuery> queries)
         {
-            var processed = new List<IQuery>();
+            var results = new List<IndexedQueryResult>();
             foreach (var query in queries)
             {
-                ProcessQueries(query);
+                var result = ProcessQuery(query);
+                results.Add(new IndexedQueryResult(query.Guid, result));
             }
+            return results;
         }
         /// <summary>
         /// Process a single query (execute it)
         /// </summary>
         /// <param name="query"></param>
-        public void ProcessQueries(IQuery query)
+        public IQueryResult ProcessQuery(IQuery query)
         {
             if (query == null)
             {
                 throw new ArgumentNullException(nameof(query));
             }
 
-            query.Execute();
             query.ExecutedOn = _dateTimeProvider.GetServerDateTime();
+            return query.Execute();
         }
         /// <summary>
         /// Create a command of the specified type.
