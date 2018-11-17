@@ -83,7 +83,7 @@ namespace CommandManagerCoreTests
             {
                 var commandDto = new CommandDto
                 {
-                    Entity = "RootEntity",
+                    Entity = "Entity",
                     Command = "Create",
                     EntityGuid = Guid.NewGuid().ToString(),
                     EntityRoot = "RootEntity",

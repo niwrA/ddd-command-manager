@@ -32,12 +32,12 @@ namespace CommandManagerCoreTests
             var configs = new List<ICommandConfig>
             {
               commandConfigBuilder.WithCommandName("Create")
-              .WithEntity("RootEntity")
+              .WithEntity("Entity")
               .WithProcessor(processor1.Object)
               .Build(),
               commandConfigBuilder
               .WithCommandName("Create")
-              .WithEntity("RootEntity")
+              .WithEntity("Entity")
               .WithProcessor(processor2.Object).Build()            };
 
             var processorConfigs = new List<IProcessorConfig>

@@ -77,7 +77,7 @@ namespace niwrA.CommandManager
             var processorConfigs = GetProcessorConfigs(command.EntityRoot);
             foreach (var config in processorConfigs)
             {
-                var typedCommand = config.GetCommand(commandName, command.Entity, parametersJson);
+                var typedCommand = config.GetCommand(commandName, command.EntityRoot, parametersJson);
 
                 SetCommandProperties(command, config.Processor, typedCommand);
                 typedCommands.Add(typedCommand);

@@ -73,6 +73,14 @@ namespace CommandManagerCoreTests.Fakes
             ((ITestService)CommandProcessor).CreateRootEntity(EntityGuid, Name);
         }
     }
+    public class CreateEntityCommand : CommandBase, ICommand
+    {
+        public string Name { get; set; }
+        public void Execute()
+        {
+            ((ITestService)CommandProcessor).CreateRootEntity(EntityGuid, Name);
+        }
+    }
     public class RenameRootEntityCommand : CommandBase, ICommand
     {
         public string Name { get; set; }
@@ -110,6 +118,7 @@ namespace CommandManagerCoreTests.Fakes
     {
         IRootEntity GetRootEntity(string guid);
         IRootEntity CreateRootEntity(string guid, string Name);
+        // IEntity CreateEntity(string guid, string Name);
     }
     public interface ITestQueryService : IQueryProcessor
     {
