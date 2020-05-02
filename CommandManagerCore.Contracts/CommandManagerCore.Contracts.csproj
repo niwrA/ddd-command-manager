@@ -1,19 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>Package containing contracts (dtos, interfaces) for CommandManagerCore</Description>
-    <Copyright>Copyright 2018, Arwin van Arum</Copyright>
-    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/niwrA/ddd-command-manager</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
-    <PackageReleaseNotes>- Support adding commands to running batch from the CommandProcessor</PackageReleaseNotes>
-    <Version>3.2.3</Version>
-    <AssemblyVersion>3.2.3.0</AssemblyVersion>
-    <FileVersion>3.2.3.0</FileVersion>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp2.0</TargetFramework>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Description>Package containing contracts (dtos, interfaces) for CommandManagerCore</Description>
+		<Copyright>Copyright 2018, Arwin van Arum</Copyright>
+		<PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+		<PackageProjectUrl>https://github.com/niwrA/ddd-command-manager</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
+		<PackageReleaseNotes>- Support SourceLink</PackageReleaseNotes>
+		<Version>3.3.0</Version>
+		<AssemblyVersion>3.3.0.0</AssemblyVersion>
+		<FileVersion>3.3.0.0</FileVersion>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
 
-  <Import Project="..\CommandContractsShared\CommandContractsShared.projitems" Label="Shared" />
+	<Import Project="..\CommandContractsShared\CommandContractsShared.projitems" Label="Shared" />
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.Common" Version="1.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
 </Project>
