@@ -1,30 +1,43 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard1.5</TargetFramework>
-    <Description>This (opiniated) domain driven design / microservices focussed command library makes it easy to match commands with one or more services. You can route all commands for a specific root to one or more processors, and add specific configurations for specific commands. Includes deseralization into command objects that can be executed. This is an alternative way of matching executable code with commands from message handlers, and matches the domain driven design philosophy perhaps a bit more closely. It also includes support for merging multiple commands to rebuild an object similar to event-sourcing.</Description>
-    <Authors>Arwin van Arum</Authors>
-    <Company>niwrA</Company>
-    <PackageReleaseNotes>- added tenantId to the base command interface and implementations for multi-tenancy support</PackageReleaseNotes>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/niwrA/ddd-command-manager</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
-    <RepositoryType>GitHub</RepositoryType>
-    <PackageTags>commands micro-services ddd domain</PackageTags>
-    <Version>2.0.10</Version>
-    <AssemblyVersion>2.0.10.0</AssemblyVersion>
-    <FileVersion>2.0.10.0</FileVersion>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard1.5</TargetFramework>
+		<Description>This (opiniated) domain driven design / microservices focussed command library makes it easy to match commands with one or more services. You can route all commands for a specific root to one or more processors, and add specific configurations for specific commands. Includes deseralization into command objects that can be executed. This is an alternative way of matching executable code with commands from message handlers, and matches the domain driven design philosophy perhaps a bit more closely. It also includes support for merging multiple commands to rebuild an object similar to event-sourcing.</Description>
+		<Authors>Arwin van Arum</Authors>
+		<Company>niwrA</Company>
+		<PackageReleaseNotes>- added tenantId to the base command interface and implementations for multi-tenancy support</PackageReleaseNotes>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+		<PackageProjectUrl>https://github.com/niwrA/ddd-command-manager</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
+		<RepositoryType>GitHub</RepositoryType>
+		<PackageTags>commands micro-services ddd domain</PackageTags>
+		<Version>2.0.10</Version>
+		<AssemblyVersion>2.0.10.0</AssemblyVersion>
+		<FileVersion>2.0.10.0</FileVersion>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
-  <Import Project="..\CommandsShared\CommandsShared.projitems" Label="Shared" />
+	</PropertyGroup>
 
-  <Import Project="..\CommandRepositoryInMemoryShared\CommandRepositoryInMemoryShared.projitems" Label="Shared" />
+	<Import Project="..\CommandsShared\CommandsShared.projitems" Label="Shared" />
 
-  <Import Project="..\CommandContractsShared\CommandContractsShared.projitems" Label="Shared" />
+	<Import Project="..\CommandRepositoryInMemoryShared\CommandRepositoryInMemoryShared.projitems" Label="Shared" />
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-  </ItemGroup>
+	<Import Project="..\CommandContractsShared\CommandContractsShared.projitems" Label="Shared" />
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.Common" Version="1.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+	</ItemGroup>
 
 </Project>
