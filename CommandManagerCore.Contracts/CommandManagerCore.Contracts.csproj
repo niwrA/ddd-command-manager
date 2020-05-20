@@ -8,10 +8,10 @@
 		<PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
 		<PackageProjectUrl>https://github.com/niwrA/ddd-command-manager</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
-		<PackageReleaseNotes>- Support SourceLink</PackageReleaseNotes>
-		<Version>3.3.0</Version>
-		<AssemblyVersion>3.3.0.0</AssemblyVersion>
-		<FileVersion>3.3.0.0</FileVersion>
+		<PackageReleaseNotes>- Support UserId, ConfigurationId, TransactionId fields</PackageReleaseNotes>
+		<Version>3.4.1</Version>
+		<AssemblyVersion>3.4.0.0</AssemblyVersion>
+		<FileVersion>3.4.0.0</FileVersion>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<IncludeSymbols>true</IncludeSymbols>

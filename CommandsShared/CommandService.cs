@@ -10,7 +10,6 @@ namespace niwrA.CommandManager
     {
         private ICommandStateRepository _repo;
         private IDateTimeProvider _dateTimeProvider;
-        private ICommandManager _commandManager;
         public event Action<IEnumerable<ICommandDto>> ProcessorGeneratedCommands;
 
         public CommandService(ICommandStateRepository repo, IDateTimeProvider dateTimeProvider)

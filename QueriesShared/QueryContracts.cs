@@ -16,6 +16,9 @@ namespace niwrA.QueryManager.Contracts
         DateTime CreatedOn { get; set; }
         string UserName { get; set; }
         string TenantId { get; set; }
+        string UserId { get; set; }
+        string TransactionId { get; set; }
+        string ConfigurationId { get; set; }
         IQueryProcessor QueryProcessor { get; set; }
         IQueryResult Execute();
     }
@@ -57,6 +60,9 @@ namespace niwrA.QueryManager.Contracts
         DateTime CreatedOn { get; set; }
         string UserName { get; set; }
         string TenantId { get; set; }
+        string UserId { get; set; }
+        string TransactionId { get; set; }
+        string ConfigurationId { get; set; }
         IQueryResultDto Result { get; set; }
     }
 

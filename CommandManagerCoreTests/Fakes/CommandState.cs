@@ -19,5 +19,8 @@ namespace CommandManagerCoreTests.Fakes
         public DateTime CreatedOn { get; set; }
         public string UserName { get; set; }
         public string TenantId { get; set; }
+        public string UserId { get; set; }
+        public string TransactionId { get; set; }
+        public string ConfigurationId { get; set; }
     }
 }
