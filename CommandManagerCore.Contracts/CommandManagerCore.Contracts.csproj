@@ -9,7 +9,7 @@
 		<PackageProjectUrl>https://github.com/niwrA/ddd-command-manager</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
 		<PackageReleaseNotes>- Support UserId, ConfigurationId, TransactionId fields</PackageReleaseNotes>
-		<Version>3.4.0</Version>
+		<Version>3.4.1</Version>
 		<AssemblyVersion>3.4.0.0</AssemblyVersion>
 		<FileVersion>3.4.0.0</FileVersion>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
