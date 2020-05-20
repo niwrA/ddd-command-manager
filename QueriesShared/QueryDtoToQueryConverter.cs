@@ -107,6 +107,9 @@ namespace niwrA.QueryManager
             typedQuery.ParametersJson = query.ParametersJson;
             typedQuery.UserName = query.UserName;
             typedQuery.TenantId = query.TenantId;
+            typedQuery.UserId = query.UserId;
+            typedQuery.TransactionId = query.TransactionId;
+            typedQuery.ConfigurationId = query.ConfigurationId;
             typedQuery.Query = query.Query;
 
             typedQuery.QueryProcessor = processor;

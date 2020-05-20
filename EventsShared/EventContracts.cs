@@ -16,6 +16,9 @@ namespace niwrA.EventManager.Contracts
         DateTime CreatedOn { get; set; }
         string UserName { get; set; }
         string TenantId { get; set; }
+        string UserId { get; set; }
+        string TransactionId { get; set; }
+        string ConfigurationId { get; set; }
         IEventProcessor EventProcessor { get; set; }
         void Execute();
     }
@@ -35,6 +38,9 @@ namespace niwrA.EventManager.Contracts
         DateTime CreatedOn { get; set; }
         string UserName { get; set; }
         string TenantId { get; set; }
+        string UserId { get; set; }
+        string TransactionId { get; set; }
+        string ConfigurationId { get; set; }
     }
     public interface IEventProcessor
     {

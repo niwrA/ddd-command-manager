@@ -24,6 +24,9 @@ namespace niwrA.CommandManager.Contracts
 
         string UserName { get; set; }
         string TenantId { get; set; }
+        string UserId { get; set; }
+        string TransactionId { get; set; }
+        string ConfigurationId { get; set; }
 
         ICommandStateRepository CommandRepository { get; set; }
         ICommandProcessor CommandProcessor { get; set; }
@@ -45,7 +48,10 @@ namespace niwrA.CommandManager.Contracts
         DateTime? ReceivedOn { get; set; }
         DateTime CreatedOn { get; set; }
         string UserName { get; set; }
+        string UserId { get; set; }
         string TenantId { get; set; }
+        string TransactionId { get; set; }
+        string ConfigurationId { get; set; }
     }
     // defines the contract for a Command Repository implementation
     public interface ICommandStateRepository
@@ -130,6 +136,9 @@ namespace niwrA.CommandManager.Contracts
         string EntityRoot { get; set; }
         string UserName { get; set; }
         string TenantId { get; set; }
+        string TransactionId { get; set; }
+        string ConfigurationId { get; set; }
+        string UserId { get; set; }
         DateTime CreatedOn { get; set; }
         string ParametersJson { get; set; }
         IParametersDto ParametersDto { get; set; }

@@ -35,7 +35,10 @@ namespace niwrA.CommandManager
         public DateTime CreatedOn { get { return _state.CreatedOn; } set { _state.CreatedOn = value; } }
         public DateTime? ReceivedOn { get { return _state.ReceivedOn; } set { _state.ReceivedOn = value; } }
         public string UserName { get { return _state.UserName; } set { _state.UserName = value; } }
+        public string UserId { get { return _state.UserId; } set { _state.UserId = value; } }
         public string TenantId { get { return _state.TenantId; } set { _state.TenantId = value; } }
+        public string TransactionId { get { return _state.TransactionId; } set { _state.TransactionId = value; } }
+        public string ConfigurationId { get { return _state.ConfigurationId; } set { _state.ConfigurationId = value; } }
 
         private void InitState()
         {
@@ -178,6 +181,9 @@ namespace niwrA.CommandManager
             this.Command = state.Command; // we already have the proper name, so perhaps this can be done more cleanly,
             this.UserName = state.UserName;
             this.TenantId = state.TenantId;
+            this.UserId = state.UserId;
+            this.TransactionId = state.TransactionId;
+            this.ConfigurationId = state.ConfigurationId;
             // or we should save the CommandTypeId differently into the CommandState Table, ie. without EntityCommand suffix
             this.ParametersJson = state.ParametersJson;
             _state = state;
@@ -207,7 +213,10 @@ namespace niwrA.CommandManager
         public string Command { get; set; }
         public string CommandVersion { get; set; }
         public string UserName { get; set; }
+        public string UserId { get; set; }
         public string TenantId { get; set; }
+        public string ConfigurationId { get; set; }
+        public string TransactionId { get; set; }
         public string ParametersJson { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime? ExecutedOn { get; set; }

@@ -107,6 +107,9 @@ namespace niwrA.EventManager
             typedEvent.ParametersJson = e.ParametersJson;
             typedEvent.UserName = e.UserName;
             typedEvent.TenantId = e.TenantId;
+            typedEvent.UserId = e.UserId;
+            typedEvent.TransactionId = e.TransactionId;
+            typedEvent.ConfigurationId = e.ConfigurationId;
             typedEvent.Event = e.Event;
 
             typedEvent.EventProcessor = processor;
