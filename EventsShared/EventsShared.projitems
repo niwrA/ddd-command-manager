@@ -10,7 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Events.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EventContracts.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EventDtoToEventConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EventManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EventNotConfiguredException.cs" />

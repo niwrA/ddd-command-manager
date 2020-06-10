@@ -10,7 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Queries.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)QueryContracts.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QueryDtoToQueryConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QueryManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QueryNotConfiguredException.cs" />
