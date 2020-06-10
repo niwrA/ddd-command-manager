@@ -42,12 +42,19 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "QueriesShared", "QueriesSha
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EventsShared", "EventsShared\EventsShared.shproj", "{4DD3A5CC-82F6-41B5-9F5E-BCC1E4C9A675}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "QueryContractsShared", "QueryContractsShared\QueryContractsShared.shproj", "{1C77310C-03EF-4F60-ADD8-C83631B225F4}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EventContractsShared", "EventContractsShared\EventContractsShared.shproj", "{8493ACBF-EECD-4EF5-BF2A-518C2C3040C0}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		QueryContractsShared\QueryContractsShared.projitems*{1c77310c-03ef-4f60-add8-c83631b225f4}*SharedItemsImports = 13
 		CommandContractsShared\CommandContractsShared.projitems*{208fd5d4-7300-4f3a-ae4c-697e8b163fe1}*SharedItemsImports = 5
 		CommandRepositoryInMemoryShared\CommandRepositoryInMemoryShared.projitems*{208fd5d4-7300-4f3a-ae4c-697e8b163fe1}*SharedItemsImports = 5
 		CommandsShared\CommandsShared.projitems*{208fd5d4-7300-4f3a-ae4c-697e8b163fe1}*SharedItemsImports = 5
 		CommandContractsShared\CommandContractsShared.projitems*{2fbaeda4-a22f-4b6f-b97d-a8289cd67d50}*SharedItemsImports = 5
+		EventContractsShared\EventContractsShared.projitems*{2fbaeda4-a22f-4b6f-b97d-a8289cd67d50}*SharedItemsImports = 5
+		QueryContractsShared\QueryContractsShared.projitems*{2fbaeda4-a22f-4b6f-b97d-a8289cd67d50}*SharedItemsImports = 5
 		QueriesShared\QueriesShared.projitems*{4b1c907d-c7a4-4023-921f-53e4c3d05a2a}*SharedItemsImports = 13
 		EventsShared\EventsShared.projitems*{4dd3a5cc-82f6-41b5-9f5e-bcc1e4c9a675}*SharedItemsImports = 13
 		CommandRepositoryInMemoryShared\CommandRepositoryInMemoryShared.projitems*{5d0e564d-8d2f-439c-b915-e1be6104fe22}*SharedItemsImports = 13
@@ -58,12 +65,15 @@ Global
 		CommandsShared\CommandsShared.projitems*{6fcfeca4-8e46-453e-a582-0b7cbf145445}*SharedItemsImports = 5
 		EventsShared\EventsShared.projitems*{6fcfeca4-8e46-453e-a582-0b7cbf145445}*SharedItemsImports = 5
 		QueriesShared\QueriesShared.projitems*{6fcfeca4-8e46-453e-a582-0b7cbf145445}*SharedItemsImports = 5
+		EventContractsShared\EventContractsShared.projitems*{8493acbf-eecd-4ef5-bf2a-518c2c3040c0}*SharedItemsImports = 13
 		CommandContractsShared\CommandContractsShared.projitems*{886bae45-e1a7-4a4d-a9f2-60ae9cc44361}*SharedItemsImports = 13
 		CommandRepositoryInMemoryShared\CommandRepositoryInMemoryShared.projitems*{9406113e-40d3-4311-9df8-cbb104c94ada}*SharedItemsImports = 4
 		CommandsShared\CommandsShared.projitems*{9406113e-40d3-4311-9df8-cbb104c94ada}*SharedItemsImports = 4
 		EventsShared\EventsShared.projitems*{9406113e-40d3-4311-9df8-cbb104c94ada}*SharedItemsImports = 4
 		QueriesShared\QueriesShared.projitems*{9406113e-40d3-4311-9df8-cbb104c94ada}*SharedItemsImports = 4
 		CommandContractsShared\CommandContractsShared.projitems*{e80a65e3-4d1c-4022-9741-67b5d749ff02}*SharedItemsImports = 4
+		EventContractsShared\EventContractsShared.projitems*{e80a65e3-4d1c-4022-9741-67b5d749ff02}*SharedItemsImports = 4
+		QueryContractsShared\QueryContractsShared.projitems*{e80a65e3-4d1c-4022-9741-67b5d749ff02}*SharedItemsImports = 4
 		CommandsShared\CommandsShared.projitems*{e836653d-f62d-4262-89cd-622bf092f8e3}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -208,6 +218,8 @@ Global
 		{98EAAB30-E519-4112-A65E-D7BF5C9D6BDC} = {172563A7-7C71-4899-9222-92EDE2C12D32}
 		{4B1C907D-C7A4-4023-921F-53E4C3D05A2A} = {AC0669E3-02A0-4921-9A77-86C843F2034F}
 		{4DD3A5CC-82F6-41B5-9F5E-BCC1E4C9A675} = {98EAAB30-E519-4112-A65E-D7BF5C9D6BDC}
+		{1C77310C-03EF-4F60-ADD8-C83631B225F4} = {AC0669E3-02A0-4921-9A77-86C843F2034F}
+		{8493ACBF-EECD-4EF5-BF2A-518C2C3040C0} = {98EAAB30-E519-4112-A65E-D7BF5C9D6BDC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1165C405-2F11-4F3D-9F4B-16499319CBB0}

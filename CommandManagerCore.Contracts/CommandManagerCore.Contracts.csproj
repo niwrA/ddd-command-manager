@@ -8,10 +8,10 @@
 		<PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
 		<PackageProjectUrl>https://github.com/niwrA/ddd-command-manager</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
-		<PackageReleaseNotes>- Support UserId, ConfigurationId, TransactionId fields</PackageReleaseNotes>
-		<Version>3.4.1</Version>
-		<AssemblyVersion>3.4.0.0</AssemblyVersion>
-		<FileVersion>3.4.0.0</FileVersion>
+		<PackageReleaseNotes>- move event and query contracts to separate contracts package</PackageReleaseNotes>
+		<Version>3.4.2</Version>
+		<AssemblyVersion>3.4.2.0</AssemblyVersion>
+		<FileVersion>3.4.2.0</FileVersion>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<IncludeSymbols>true</IncludeSymbols>
@@ -19,6 +19,10 @@
 	</PropertyGroup>
 
 	<Import Project="..\CommandContractsShared\CommandContractsShared.projitems" Label="Shared" />
+
+	<Import Project="..\EventContractsShared\EventContractsShared.projitems" Label="Shared" />
+
+	<Import Project="..\QueryContractsShared\QueryContractsShared.projitems" Label="Shared" />
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.Common" Version="1.0.0">

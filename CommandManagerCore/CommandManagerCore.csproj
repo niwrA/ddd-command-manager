@@ -10,11 +10,11 @@
 		<RepositoryUrl>https://github.com/niwrA/ddd-command-manager</RepositoryUrl>
 		<RepositoryType>GitHub</RepositoryType>
 		<PackageTags>commands micro-services ddd domain</PackageTags>
-		<PackageReleaseNotes>- Fix: add missing copy step for transactionId, configurationId and userId for commands</PackageReleaseNotes>
+		<PackageReleaseNotes>- move query and event contracts to separate contracts package</PackageReleaseNotes>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>3.4.1</Version>
-		<AssemblyVersion>3.4.0.0</AssemblyVersion>
-		<FileVersion>3.4.0.0</FileVersion>
+		<Version>3.4.2</Version>
+		<AssemblyVersion>3.4.2.0</AssemblyVersion>
+		<FileVersion>3.4.2.0</FileVersion>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<IncludeSymbols>true</IncludeSymbols>
